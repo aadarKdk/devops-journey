@@ -10,6 +10,6 @@ echo "$IPv4only"
 mem_info=$(free -m)
 echo "$mem_info"
 file_contents=$(cat ./filename)
-echo " The contents of file are: $file_contents	"
+echo "Contents of file are: $file_contents"
 
 
