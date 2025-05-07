@@ -17,3 +17,8 @@ echo " The Process ID of current running shell: " $$
 echo " Time taken: $SECONDS"
 echo "Exit code of Last command: $?"
 
+
+# Notice the difference between quotes '' & ""
+course='DevSecOps'
+echo 'Course name: $course'
+echo "Course name: $course"
