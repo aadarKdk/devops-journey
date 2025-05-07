@@ -15,11 +15,8 @@ echo " 6th place argument:--> $6"
 echo " 7th place argument:--> $7"
 echo " 8th place argument:--> $8"
 echo " 9th place argument:--> $9"
-
 echo
-
 echo " No. of arguments:---> $#"
-
 echo " Arguments passed are: $@"
 
 
