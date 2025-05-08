@@ -1,0 +1,27 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrant configuration for Ubuntu 24.04 with VirtualBox and file-based shell provisioning
+
+Vagrant.configure("2") do |config|
+
+  # Base image from Bento project (Ubuntu 24.04)
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box_version = "202502.21.0"  # Specific version for consistency
+
+  # Host-only private network with static IP
+  config.vm.network "private_network", ip: "192.168.56.10"
+
+  # VirtualBox provider-specific settings
+  config.vm.provider "virtualbox" do |vb|
+    # vb.gui = true         # Uncomment to enable GUI for the VM
+    # vb.cpus = 2           # Uncomment to assign multiple CPUs
+    # vb.memory = "1024"    # Uncomment to allocate more RAM
+    vb.name = "vagrant_aadar"  # Custom name for the VM in VirtualBox
+  end
+
+  # Shell provisioning using an external script (must be in the same directory)
+  config.vm.provision "shell", path: "provision1.sh"
+
+end
+
