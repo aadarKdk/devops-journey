@@ -1,0 +1,35 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+
+  # Base Ubuntu 24.04 box (from Bento project)
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box_version = "202502.21.0"
+
+  # Create a private network with IP.
+  config.vm.network "private_network", ip: "192.168.56.10"
+
+  # VirtualBox provider-specific configuration:
+  config.vm.provider "virtualbox" do |vb|
+  # vb.gui = true         # Uncomment to enable GUI
+      vb.name = "vagrant_aadar"
+  # vb.memory = "1024"    # Uncomment to allocate more memory
+  end
+
+  # Provisioning (SHELL script)
+  config.vm.provision "shell", inline: <<-SHELL
+
+     apt-get update
+
+     apt-get install -y apache2
+     
+     echo "[INFO] Starting and enabling apache2..."
+     sudo systemctl enable apache2
+     sudo systemctl start apache2
+
+     echo " Hello DevOps! " > sudo tee var/www/html/index.html
+
+  SHELL
+end
+                                          
