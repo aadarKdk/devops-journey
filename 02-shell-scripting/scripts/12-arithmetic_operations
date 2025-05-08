@@ -1,0 +1,13 @@
+#!/bin/bash
+
+read -p "Enter first number: " a
+read -p "Enter second number: " b
+
+sum=$((a+b))
+diff=$((a-b))
+pro=$((a*b))
+
+echo "Sum = $sum"
+echo "Difference = $diff"
+echo "Product = $pro"
+
