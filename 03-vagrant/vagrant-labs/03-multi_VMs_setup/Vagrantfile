@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrant multi-VM configuration
+Vagrant.configure("2") do |config|
+
+  # --- Web Server VM ---
+  config.vm.define "web" do |web|
+    # Base box and version
+    web.vm.box = "bento/ubuntu-24.04"
+    web.vm.box_version = "202502.21.0"
+
+    # Set hostname
+    web.vm.hostname = "web.local"
+
+    # Assign private IP
+    web.vm.network "private_network", ip: "192.168.56.11"
+
+    # VirtualBox-specific settings
+    web.vm.provider "virtualbox" do |vb|
+      vb.name = "vagrant_web"
+      # vb.memory = 1024  # Optional: uncomment to allocate memory
+    end
+
+    # Shell provisioning script
+    web.vm.provision "shell", path: "provision_web.sh"
+  end
+
+  # --- Database Server VM ---
+  config.vm.define "db" do |db|
+    # Base box and version
+    db.vm.box = "bento/ubuntu-24.04"
+    db.vm.box_version = "202502.21.0"
+
+    # Set hostname
+    db.vm.hostname = "db.local"
+
+    # Assign private IP
+    db.vm.network "private_network", ip: "192.168.56.12"
+
+    # VirtualBox-specific settings
+    db.vm.provider "virtualbox" do |vb|
+      vb.name = "vagrant_db"
+      # vb.memory = 1024  # Optional: uncomment to allocate memory
+    end
+
+    # Shell provisioning script
+    db.vm.provision "shell", path: "provision_db.sh"
+  end
+
+end
+
