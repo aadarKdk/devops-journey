@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  # Use Ubuntu 24.04 base box
+  config.vm.box = "bento/ubuntu-24.04"
+  config.vm.box_version = "202502.21.0"
+
+  # Private network for static IP access
+  config.vm.network "private_network", ip: "192.168.56.20"
+
+  # VM provider settings
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "mini-finance-site"
+    # vb.gui = true
+    # vb.memory = "1024"
+  end
+
+  # Shell provisioning using external script
+  config.vm.provision "shell", path: "miniFinanceSite_setup.sh"
+end
+
+
