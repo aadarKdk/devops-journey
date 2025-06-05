@@ -8,6 +8,12 @@ This project provisions a local Apache web server on Ubuntu 24.04 using Vagrant 
 - [Vagrant](https://www.vagrantup.com/)
 - Internet connection (to download the website template)
 
+### Screenshorts from Apache2 ubuntu default page:
+![Configure Overview](https://github.com/aadaRkdk/devops-journey/blob/main/04-server-deployment/01-apache-static-site/Configure_overview.png)
+
+![Documents Roots](https://github.com/aadaRkdk/devops-journey/blob/main/04-server-deployment/01-apache-static-site/Documents_roots.png)
+
+
 ## 📁 File Descriptions
 
 | File Name                  | Purpose |
