@@ -5,7 +5,7 @@ This guide walks you through installing **Harbor** (v2.13.1) in **offline mode**
 ### [Prerequisites](https://goharbor.io/docs/2.13.0/install-config/installation-prereqs/)
 
 ### I Followed following steps:
-1. Created fresh VM using Vagrant with [Vagrantfile]().
+1. Created fresh VM using Vagrant with [Vagrantfile](https://github.com/erkdk/devops-journey/blob/main/06-docker/harbor-setup/Vagrantfile).
 2. [Installed Docker Engine.](https://docs.docker.com/engine/install/ubuntu/)
 3. Installed OpenSSL and Created SSL certificates.
 ```bash
