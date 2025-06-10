@@ -55,3 +55,21 @@ https://192.168.56.10
 Username: admin
 Password: Harbor12345
 ```
+9. To restart the harbor after vagrant reboot:
+```bash
+cd ~/harbor
+sudo docker-compose up -d
+```    
+
+
+
+
+#### References
+- [Harbor Official GitHub](https://github.com/goharbor/harbor)
+- [Harbor Documentation](https://goharbor.io/docs/2.13.0/)
+- [Docker Engine Install Guide](https://docs.docker.com/engine/install/ubuntu/)
+
+
+
+
+
