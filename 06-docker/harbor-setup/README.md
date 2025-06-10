@@ -4,10 +4,10 @@ This guide walks you through installing **Harbor** (v2.13.1) in **offline mode**
 
 ### [Prerequisites](https://goharbor.io/docs/2.13.0/install-config/installation-prereqs/)
 
-### I Followed following steps:
+### I followed the following steps:
 1. Created fresh VM using Vagrant with [Vagrantfile](https://github.com/erkdk/devops-journey/blob/main/06-docker/harbor-setup/Vagrantfile).
 2. [Installed Docker Engine.](https://docs.docker.com/engine/install/ubuntu/)
-3. Installed OpenSSL and Created SSL certificates.
+3. Installed OpenSSL and created SSL certificates.
 ```bash
 sudo apt install -y openssl
 
@@ -31,7 +31,7 @@ cd harbor
 ```bash
 cp harbor.yml.tmpl harbor.yml
 ```
-6. Edited harbor.yml with following settings:
+6. Edited harbor.yml with the following:
 ```bash
 nano harbor.yml
 ```
@@ -44,7 +44,7 @@ https:
   private_key: /etc/harbor/ssl/harbor.key
 harbor_admin_password: Harbor12345
 ```
-7. Ran the script to install harbor
+7. Ran the script to install Harbor
 ```bash
 sudo ./install.sh
 ```
