@@ -37,12 +37,12 @@ nano harbor.yml
 ```
 and updated: 
 ```bash
-hostname: 192.168.56.10
+hostname: harbor.local
 https:
   port: 443
   certificate: /etc/harbor/ssl/harbor.crt
   private_key: /etc/harbor/ssl/harbor.key
-harbor_admin_password: Harbor12345
+harbor_admin_password: Harbor12345 (Choose Yourself)
 ```
 7. Ran the script to install Harbor
 ```bash
