@@ -1,0 +1,33 @@
+To download and setup the jenkins following commands were used
+
+
+vagrant@vagrant:~$ history
+    1  clear
+    2  sudo apt update
+    3  sudo apt install fontconfig openjdk-21-jre
+    4  java -version
+    5  clear
+    6  sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc   https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    7  echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc]"   https://pkg.jenkins.io/debian-stable binary/ | sudo tee   /etc/apt/sources.list.d/jenkins.list > /dev/null
+    8  sudo apt-get update
+    9  sudo apt-get install jenkins
+   10  clear
+   11  sudo systemctl enable jenkins
+   12  sudo systemctl start jenkins
+   13  sudo systemctl status jenkins
+   14  sudo cat /var/lib/jenkins/secrets/initialAdminPassword
+   15  sudo su
+ 
+vagrant@vagrant:~$ 
+
+root@vagrant:/var/lib/jenkins/plugins#
+    1  cd /var/lib/jenkins
+    2  ls
+    3  ls -l | wc 
+    4  ls
+    5  cd plugins/
+    6  ls -l | wc 
+    7  ls
+    8  ls -l | wc -l
+ 
+
