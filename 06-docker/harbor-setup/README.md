@@ -58,7 +58,7 @@ Password: Harbor12345
 9. To restart the harbor after vagrant reboot:
 ```bash
 cd ~/harbor
-sudo docker-compose up -d
+sudo docker compose up -d
 ```    
 
 
