@@ -28,7 +28,7 @@ This project demonstrates real-world DevOps practices by deploying containerized
 ---
 
 ### Services
-- `client` – React app served by the built-in dev server (or NGINX if extended)
+- `client` – React app
 - `server` – Node.js API with `express`, connects to MongoDB Atlas
 - Both services run in **replicated mode** and are attached to a **Docker overlay network**
 - `portainer`– Web-based Docker Swarm manager running on a manager node (Port :9443)
