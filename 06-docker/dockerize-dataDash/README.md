@@ -1,5 +1,7 @@
 # [dockerize-dataDash](https://github.com/erkdk/dockerize-dataDash)
 
+![Diagram](https://github.com/erkdk/devops-journey/blob/main/06-docker/dockerize-dataDash/dockerize-dataDash-diagram.png)
+
 A fully Dockerized, full-stack CRUD application ([dataDash](https://github.com/erkdk/dataDash/tree/feature/initial-setup)) deployed on a **Docker Swarm cluster** with:
 
 -  **React frontend**
