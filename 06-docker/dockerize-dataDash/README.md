@@ -46,7 +46,7 @@ This project demonstrates real-world DevOps practices by deploying containerized
 ---
 ## Infrastructure Setup & Commands
 ### [Vagrantfile to create the multiple manager nodes and worker nodes]()
-### [Commands used on Harbor VM]()
+### [Commands used on Harbor VM](https://raw.githubusercontent.com/erkdk/devops-journey/refs/heads/main/06-docker/dockerize-dataDash/Commands-used-on-Harbor-VM)
 ### [Vagrantfile to create Harbor VM]()
 ### [Commands used on Manager nodes]()
 ### [Commands used on Worker nodes]()
