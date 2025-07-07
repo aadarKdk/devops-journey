@@ -37,6 +37,8 @@ sudo systemctl start tomcat
 sudo systemctl status tomcat
 
 ```
+#### Output:
+![tomcat.service](https://github.com/erkdk/devops-journey/blob/main/07-systemd/tomcat-service.png)
 
 #### Recommended Reading:
 - Wikipedia **[systemd](https://en.wikipedia.org/wiki/Systemd)**
