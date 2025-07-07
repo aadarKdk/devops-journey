@@ -27,7 +27,7 @@ mv apache-tomcat-11.0.9 tomcat
 ```bash
 cp target/java-tomcat-maven-example.war ~/maven_CICD/tomcat/webapps/
 ```
-#### Create systemd Service named [tomcat.service]()
+#### Create systemd Service named [tomcat.service](https://github.com/erkdk/devops-journey/blob/main/07-systemd/tomcat.service)
 
 #### Run the following commands:
 ```bash
