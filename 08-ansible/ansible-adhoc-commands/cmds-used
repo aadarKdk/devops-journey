@@ -1,0 +1,91 @@
+on control-node:
+   18  history
+   19  exit
+   20  ls
+   21  clear
+   22  ls
+   23  cd myenv/
+   24  ls
+   25  cd bin/
+   26  ls
+   27  source activate
+   28  cat activate
+   29  ls
+   30  clear
+   31  ip addr show
+   32  ping 192.168.56.12
+   33  ssh vagrant@192.168.56.12
+   34  ls
+   35  cd
+   36  ls
+   37  mkdir ansible-examples
+   38  ls
+   39  cd ansible-examples/
+   40  mkdir eg1
+   41  ls
+   42  cd eg1/
+   43  vim inventory
+   44  ls
+   45  sudo apt update
+   46  sudo apt install sshpass
+   47  ls
+   48  ping google.com
+   49  sudo apt update
+   50  sudo apt install sshpass
+   51  cat inventory 
+   52  ansible -i inventory -m ping node1
+   53  ansible -i inventory -m apt -a "name=apache2 state=present" node1
+   54  ansible -i inventory -m apt -a "name=apache2 state=present" node1 --become
+   55  ansible -i inventory -m apt -a "name=apache2 state=absent" node1 --become
+   56  ansible -i inventory -m apt -a "name=apache2 state=present" node1 --become
+   57  ansible -i inventory -m apt -a "name=apache2 state=started" node1 --become
+   58  ansible -i inventory -m service -a "name=apache2 state=absent" node1 --become
+   59  ansible -i inventory -m service -a "name=apache2 state=started" node1 --become
+   60  ansible -i inventory -m service -a "name=apache2 state=s" node1 --become
+   61  ansible -i inventory -m service -a "name=apache2 state=started" node1 --become
+   62  ansible -i inventory -m service -a "name=apache2 state=started enabled=no" node1 --become
+   63  ansible -i inventory -m service -a "name=apache2 state=started enabled=yes" node1 --become
+   64  vim index.html
+   65  ansible -i inventory -m copy -a "src=inde.html dest=/var/www/html/" node1 --become
+   66  ansible -i inventory -m copy -a "src=index.html dest=/var/www/html/" node1 --become
+   67  exit 
+   68  history
+vagrant@control-node:~$ 
+
+
+
+on node1:
+vagrant@node1:~$ history
+    1  exit
+    2  clear
+    3  ip addr show
+    4  ping 192.168.56.11
+    5  ssh vagrant@192.168.56.11
+    6  cd /etc/
+    7  ls
+    8  cd ssh/
+    9  ls
+   10  vim ssh_config
+   11  ls
+   12  cd sshd_config.d/
+   13  ls
+   14  vim 50-cloud-init.conf 
+   15  sudo su
+   16  clear
+   17  dpkg -l | grep apache2
+   18  sudo systemctl status apache2
+   19  dpkg -l | grep apache2
+   20  sudo systemctl status apache2
+   21  ls /var/www/html/
+   22  exit
+   23  history
+vagrant@node1:~$ 
+
+
+
+
+
+
+
+
+
