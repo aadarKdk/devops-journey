@@ -1,0 +1,22 @@
+[Unit]
+Description=java-tomcat-maven-eg-web-app
+After=network.target
+
+[Service]
+Type=forking
+User=vagrant
+Group=vagrant
+
+Environment="JAVA_HOME=/usr/lib/jvm/java-21-openjdk-amd64"
+Environment="CATALINA_HOME=/home/vagrant/maven-CICD/tomcat"
+Environment="CATALINA_BASE=/home/vagrant/maven-CICD/tomcat"
+Environment="CATALINA_OPTS=-Xms512M -Xmx1024M -server -XX:+UseParallelGC"
+
+ExecStart=/home/vagrant/maven-CICD/tomcat/bin/startup.sh
+ExecStop=/home/vagrant/maven-CICD/tomcat/bin/shutdown.sh
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
