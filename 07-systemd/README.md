@@ -48,7 +48,6 @@ sudo systemctl status tomcat
 - **[manual](https://man7.org/linux/man-pages/man1/init.1.html)**
 
 
-#### 🔐 Best Practices for Production:
-- Run as a non-root user (e.g. vagrant)
-- Use Type=forking to let Tomcat background properly
-- Configure log rotation for catalina.out
+####  Best Practices:
+- Run the service as a non-root user
+- Check Catalina.out for error finding
