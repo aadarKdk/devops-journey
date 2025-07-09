@@ -1,4 +1,4 @@
-on control-node:
+commands used on control-node:
    18  history
    19  exit
    20  ls
