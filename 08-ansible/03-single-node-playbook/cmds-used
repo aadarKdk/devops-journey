@@ -1,0 +1,36 @@
+   68  history
+   69  ls
+   70  source myenv/bin/activate
+   71  ls
+   72  cd ansible-examples/
+   73  ls
+   74  mkdir eg2
+   75  ls
+   76  cd eg2/
+   77  cp ../eg1/inventory .
+   78  ls
+   79  cat inventory 
+   80  vim playbook.yaml
+   81  ansible-playbook -i inventory playbook.yaml --syntax-check
+   82  ansible-playbook -i inventory playbook.yaml -C
+   83  ansible-playbook -i inventory playbook.yaml
+   84  vim playbook.yaml
+   85  ls
+   86  cp ../eg1/index.html .
+   87  ls
+   88  vim index.html 
+   89  vim playbook.yaml
+   90  ansible-playbook -i inventory playbook.yaml --syntax-check
+   91  ansible-playbook -i inventory playbook.yaml --C
+   92  ansible-playbook -i inventory playbook.yaml -C
+   93  ansible-playbook -i inventory playbook.yaml
+   94  history 
+(myenv) vagrant@control-node:~/ansible-examples/eg2$
+
+
+   23  history
+   24  sudo systemctl status apache2
+   25  cat /var/www/html/index.html 
+   26  sudo systemctl status apache2
+   27  history
+vagrant@node1:~$ 
