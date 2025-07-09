@@ -1,0 +1,60 @@
+ on control-node:
+  122  source myenv/bin/activate
+  124  cd ansible-examples/
+  128  mkdir eg3
+  134  vim inventory
+  135  vim playbook.yaml
+  137  ssh vagrant@192.168.56.14
+  139  ssh vagrant@192.168.56.12
+  140  ls
+  141  vim inventory 
+  142  ls
+  143  ls -la
+  144  ssh vagrant@192.168.56.14
+  148  vim inventory 
+  149  ls
+  152  ansible -i inventory -m ping node1
+  153  ansible -i inventory -m ping centos
+  154  ansible -i inventory -m ping all
+  155  ansible -i inventory -m ping "*"
+  156  vim ansible.cfg
+  157  ls
+  158  vim playbook.yaml 
+  159  ansible-playbook playbook.yaml --syntax-check
+  160  ansible-playbook playbook.yaml -C
+  163  vim inventory 
+  164  vim playbook.yaml 
+  165  ls
+  166  ansible-playbook playbook.yaml -C
+  168  vim playbook.yaml 
+  170  ansible-playbook playbook.yaml -C
+  171  ansible-playbook playbook.yaml
+  172  ls
+  173  vim index.html
+  174  ansible-playbook playbook.yaml
+(myenv) vagrant@control-node:~/ansible-examples/eg3$
+
+
+on node1:
+vagrant@node1:~$
+    1  dpkg -l | grep apache2
+    2  sudo systemctl status apache2
+    3  clear
+    7  ip addr show
+    8  cat /etc/os-release 
+    9  ssh vagrant@192.168.56.11
+   10  sudo systemctl status apache2
+   11  history
+vagrant@node1:~$ 
+
+
+on centos:
+[vagrant@centos .ssh]$ history
+    1  ls -la
+    2  cd .ssh/
+    3  ls
+    4  vim authorized_keys 
+    5  cat /etc/os-release 
+    6  sudo systemctl status mariadb
+    7  history
+[vagrant@centos .ssh]$
