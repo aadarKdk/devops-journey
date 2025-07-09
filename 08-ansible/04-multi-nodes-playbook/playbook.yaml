@@ -1,0 +1,38 @@
+---
+- name: Setup Apache webserver on Ubuntu node1
+  hosts: node1
+  become: true
+  tasks:
+    - name: Install Apache2 on node1
+      apt:
+        name: apache2
+        state: present
+        update_cache: yes
+
+    - name: Start and enable apache2 service on node1
+      service:
+        name: apache2
+        state: started
+        enabled: yes
+
+    - name: Copy custom index.html
+      copy:
+        src: index.html
+        dest: /var/www/html/index.html
+
+
+- name: Setup MariaDB on CentOS (centos)
+  hosts: centos
+  become: true
+  tasks:
+    - name: Install mariadb-server on CentOS
+      dnf:
+        name: mariadb-server
+        state: present
+
+    - name: Start and enable mariadb service
+      service:
+        name: mariadb
+        state: started
+        enabled: yes
+
