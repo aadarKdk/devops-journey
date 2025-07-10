@@ -3,12 +3,7 @@
   hosts: dbnode
   become: yes
 
-  vars:
-    mysql_root_passwd: yourpassword  # MySQL root password
-    db_name: egdb                   # Database to create
-    user_name: eguser               # Database user
-    user_passwd: egpassword         # User password
-    mysql_host: 127.0.0.1           # MySQL server host (localhost)
+    # vars are created here. (In this case imported from hosts_vars/dbnode)
 
   tasks:
     - name: Install MySQL server and Python MySQL client library
