@@ -1,0 +1,21 @@
+  324  mkdir eg4
+  329  cd eg4
+  341  cd ..
+  342  ls
+  343  cd eg2
+  344  cp -r index.html inventory playbook.yaml ~/ansible-examples/eg4/
+  348  cd ..
+  350  cd eg4/
+  352  vim playbook.yaml 
+  353  vim inventory 
+  354  vim index.html 
+  356  vim ansible.cfg
+  359  ansible -m "setup" node1
+  360  vim gather-facts.yaml
+  361  ansible-playbook gather-facts.yaml 
+  391  ansible -m "setup" node1 | grep os_family
+  392  ansible -m "setup" node1 | grep network
+  409  history
+(myenv) vagrant@control-node:~/ansible-examples/eg4$ 
+
+
