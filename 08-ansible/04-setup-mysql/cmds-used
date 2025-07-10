@@ -29,12 +29,19 @@ on control-node:
   268  vim ansible.cfg 
   269  ansible-playbook playbook.yaml 
   270  ls
-  271  cat myapp.log 
+  271  cat myapp.log
+  279  mkdir host_vars
+  282  cd host_vars/
+  284  vim dbnode
+  285  cd ..
+  289  vim playbook.yaml 
+  290  ansible-playbook playbook.yaml -C
+  291  ansible-playbook playbook.yaml --syntax-check
+  292  ansible-playbook playbook.yaml
 (myenv) vagrant@control-node:~/ansible-examples/setup-mysql$ 
 
 
 on dbnode:
-
 vagrant@dbnode:~$ history
     2  ping 192.168.56.11
     3  systemctl list-units --type=service | grep -i mysql
