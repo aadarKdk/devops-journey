@@ -1,0 +1,18 @@
+2025-07-10 09:29:25,893 p=4513 u=vagrant n=ansible INFO| PLAY [MySQL remote setup with DB and user] **************************************************************************************************************************************************
+2025-07-10 09:29:25,897 p=4513 u=vagrant n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-07-10 09:29:27,306 p=4513 u=vagrant n=ansible WARNING| [WARNING]: Platform linux on host dbnode is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning
+of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-10 09:29:27,306 p=4513 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 09:29:27,310 p=4513 u=vagrant n=ansible INFO| TASK [Install MySQL server and Python MySQL client library] *********************************************************************************************************************************
+2025-07-10 09:29:32,202 p=4513 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 09:29:32,219 p=4513 u=vagrant n=ansible INFO| TASK [Configure MySQL to accept remote connections] *****************************************************************************************************************************************
+2025-07-10 09:29:32,495 p=4513 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 09:29:32,500 p=4513 u=vagrant n=ansible INFO| TASK [Create the specified database] ********************************************************************************************************************************************************
+2025-07-10 09:29:32,822 p=4513 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 09:29:32,826 p=4513 u=vagrant n=ansible INFO| TASK [Create MySQL user with privileges on the database] ************************************************************************************************************************************
+2025-07-10 09:29:33,194 p=4513 u=vagrant n=ansible WARNING| [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the column's name will be uppercased. The default will be changed to true in community.mysql 4.0.0.
+
+2025-07-10 09:29:33,195 p=4513 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 09:29:33,195 p=4513 u=vagrant n=ansible INFO| PLAY RECAP **********************************************************************************************************************************************************************************
+2025-07-10 09:29:33,196 p=4513 u=vagrant n=ansible INFO| dbnode                     : ok=5    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0 

@@ -26,8 +26,11 @@ on control-node:
   238  vim playbook.yaml 
   239  ansible-playbook playbook.yaml -C
   240  ansible-playbook playbook.yaml
+  268  vim ansible.cfg 
+  269  ansible-playbook playbook.yaml 
+  270  ls
+  271  cat myapp.log 
 (myenv) vagrant@control-node:~/ansible-examples/setup-mysql$ 
-
 
 
 on dbnode:
