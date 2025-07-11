@@ -1,0 +1,24 @@
+  475  mkdir multi-users
+  479  ls
+  480  cd eg3
+  481  ls
+  484  cp ansible.cfg inventory playbook.yaml ../multi-users/
+  485  cd ..
+  486  cd multi-users/
+  488  vim inventory 
+  489  vim playbook.yaml 
+  491  mkdir group_vars
+  493  cd group_vars/
+  495  vim all
+  496  cd ..
+  498  vim playbook.yaml 
+  499  ansible-playbook playbook.yaml -C
+  500  ansible-playbook playbook.yaml --syntax-check
+  501  ansible-playbook playbook.yaml
+(myenv) vagrant@control-node:~/ansible-examples/multi-users/group_vars$ 
+
+
+vagrant@node1:~$ cd /home/
+vagrant@node1:/home$ ls
+user1  user2  user3  user4  vagrant
+vagrant@node1:/home$ 

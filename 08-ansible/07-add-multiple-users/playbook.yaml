@@ -1,0 +1,15 @@
+---
+- name: loop to add multiple users
+  hosts: node1
+  become: true
+  tasks:
+    - name: Ensure devopssgrp group exists
+      group:
+        name: devopsgrp
+        state: present
+    - name: add multiple users on node1
+      user:
+        name: "{{ item }}"
+        group: devopsgrp
+      loop: "{{ usernames }}"
+
