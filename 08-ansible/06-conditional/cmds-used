@@ -1,0 +1,36 @@
+  423  mkdir conditional
+  427  cd eg3/
+  428  ls
+  429  cp -r ansible.cfg index.html inventory playbook.yaml ../conditional/
+  430  cd ..
+  431  cd conditional/
+  433  vim ansible.cfg 
+  434  vim index.html 
+  435  rm index.html 
+  436  vim inventory 
+  437  vim playbook.yaml 
+  438  vim inventory 
+  439  vim playbook.yaml 
+  442  ansible-playbook playbook.yaml --syntax-check
+  444  ansible-playbook playbook.yaml --syntax-check
+  446  ansible-playbook playbook.yaml --syntax-check
+  451  ansible-playbook playbook.yaml 
+  452  vim group-based-playbook.yaml
+  453  ansible-playbook group-based-playbook.yaml 
+  454  vim group-based-playbook.yaml 
+  456  cp playbook.yaml distro-based-conditional.yaml
+  457  vim distro-based-conditional.yaml 
+  458  vim group-based-playbook.yaml 
+  459  cp group-based-playbook.yaml group-based-conditional.yaml
+  461  vim inventory 
+  462  vim ansible.cfg 
+  463  rm group-based-playbook.yaml 
+  464  rm playbook.yaml 
+  465  ls
+  466  vim group-based-conditional.yaml 
+  467  vim distro-based-conditional.yaml 
+  470  ansible-playbook distro-based-conditional.yaml 
+  471  ansible-playbook group-based-conditional.yaml 
+(myenv) vagrant@control-node:~/ansible-examples/conditional$ 
+
+
