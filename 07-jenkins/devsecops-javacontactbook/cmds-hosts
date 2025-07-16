@@ -1,0 +1,144 @@
+hosts: host-1, host-2
+
+host1:
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ vagrant ssh host-1
+
+vagrant@host-1:~$ history
+    1  docker version
+    2  docker swarm join --token SWMTKN-1-4en325bv34g7jyi48xs30uhlbmeyql8nnia42j5vnidenma7k0-8v7gpe5xi6d7pastzv858n5wu 192.168.56.20:2377
+    3  sudo apt update
+    4  sudo apt install openjdk-21-jdk
+    5  java -version
+    6  sudo useradd -m jenkins
+    7  sudo mkdir /home/jenkins/.ssh
+    8  sudo chmod 700 /home/jenkins/.ssh
+    9  sudo chown -R jenkins:jenkins /home/jenkins/.ssh
+   10  cd /home/jenkins/.ssh/
+   11  sudo cd /home/jenkins/.ssh
+   12  sudo su
+   13  ip addr show
+   14  sudo -u jenkins ssh-keyscan -H 192.168.56.21 >> /var/lib/jenkins/.ssh/known_hosts
+   15  sudo su - jenkins
+   16  cd /home/
+   18  cd jenkins/
+   19  sudo chmod 755 jenkins/
+   20  ls
+   21  cd jenkins/
+   23  ls -la
+   24  cd .ssh/
+   26  sudo chmod 755 .ssh/
+   27  ls
+   28  cd .ssh/
+   30  cat authorized_keys 
+   31  sudo chmod 755 authorized_keys 
+   32  cat authorized_keys 
+   33  hostname -i
+   34  whoami
+   35  ls
+   36  cat authorized_keys 
+   38  sudo nano /etc/hosts
+   39  sudo nano /etc/docker/daemon.json
+   40  sudo systemctl daemon-reexec
+   41  sudo systemctl restart docker
+   42  curl -k https://192.168.56.10
+   43  docker login harbor.local
+   44  docker login 192.168.56.10
+   46  wget -q -O - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+   47  echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+   48  sudo apt-get update
+   49  sudo apt-get install trivy
+   50  trivy --version
+   53  sudo usermod -aG docker jenkins
+   54  sudo reboot
+   55  sudo su
+   56  cd /home/
+   57  ls
+   58  cd jenkins/
+   59  ls
+   60  cd workspace/
+   61  ls
+   62  docker node ls
+   63  cd
+   65  cd /home/
+   67  cd jenkins/
+   69  cd workspace/
+   72  docker ps
+
+vagrant@host-1:~$ 
+
+root@host-1:/home/vagrant# cd /home/jenkins/.ssh/
+root@host-1:/home/jenkins/.ssh# ls -la
+root@host-1:/home/jenkins/.ssh# vim authorized_keys
+root@host-1:/home/jenkins/.ssh# chmod 600 /home/jenkins/.ssh/authorized_keys 
+root@host-1:/home/jenkins/.ssh# chown -R jenkins:jenkins /home/jenkins/.ssh
+root@host-1:/home/jenkins/.ssh# exit
+
+
+host-2
+vagrant@host-2:~$ history
+    1  docker version
+    2  docker swarm join --token SWMTKN-1-4en325bv34g7jyi48xs30uhlbmeyql8nnia42j5vnidenma7k0-8v7gpe5xi6d7pastzv858n5wu 192.168.56.20:2377
+    3  java -version
+    4  sudo useradd -m jenkins
+    5  sudo mkdir /home/jenkins/.ssh
+    6  sudo chmod 700 /home/jenkins/.ssh
+    7  sudo chown -R jenkins:jenkins /home/jenkins/.ssh
+    8  sudo su
+    9  ip addr show
+   11  cd /home/
+   13  cd jenkins/
+   14  sudo su
+   16  sudo nano /etc/hosts
+   17  sudo nano /etc/docker/daemon.json
+   18  sudo systemctl daemon-reexec
+   19  sudo systemctl restart docker
+   20  curl -k https://192.168.56.10
+   21  docker login 192.168.56.10
+   22  docker pull 192.168.56.10/library/alpine:test
+   23  trivy --version
+   24  wget -q -O - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+   25  echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+   26  sudo apt-get update
+   27  sudo apt-get install trivy
+   28  trivy --version
+   30  sudo usermod -aG docker jenkins
+   31  sudo reboot
+   33  sudo su
+   34  docker ps
+vagrant@host-2:~$ 
+
+host2:
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ vagrant ssh host-2
+
+vagrant@host-2:~$ sudo su
+root@host-2:/home/vagrant# cd /home/jenkins/.ssh/
+root@host-2:/home/jenkins/.ssh# vim authorized_keys
+root@host-2:/home/jenkins/.ssh# chmod 600 /home/jenkins/.ssh/authorized_keys 
+root@host-2:/home/jenkins/.ssh# chown -R jenkins:jenkins /home/jenkins/.ssh
+root@host-2:/home/jenkins/.ssh# exit
+
+vagrant@host-2:~$ ls
+get-docker.sh
+vagrant@host-2:~$ cd /home/
+vagrant@host-2:/home$ ls
+jenkins  vagrant
+vagrant@host-2:/home$ cd jenkins/
+-bash: cd: jenkins/: Permission denied
+vagrant@host-2:/home$ sudo su
+root@host-2:/home# ls
+jenkins  vagrant
+root@host-2:/home# cdj
+bash: cdj: command not found
+root@host-2:/home# cd jenkins/
+root@host-2:/home/jenkins# ls
+root@host-2:/home/jenkins# ls -la
+root@host-2:/home/jenkins# cd .ssh/
+root@host-2:/home/jenkins/.ssh# ls
+authorized_keys
+root@host-2:/home/jenkins/.ssh# cat authorized_keys 
+ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF9TEAwypYaGuDI7gTU0wMRgxp24BuvpYx860ju5Xdaa jenkins@devops-master
+root@host-2:/home/jenkins/.ssh# vim authorized_keys 
+root@host-2:/home/jenkins/.ssh# cat authorized_keys 
+ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDo+dpOexDtmW59Cttiy8fK5qM3n8GkIlGAgYD+1V5W+Hljkbw8gsIJvqX1owr9ywrMj2NUNOv3u1bkwcMYgR753NA+A3OnGNV5muFghP63cnJhhhtR/3lE/9J+UXSuFUKsLWi17HK5KziGhY1jFrQL39XTPqvhy3cCBuOJyK/l5lQ7m/mehW7aYvcu99jtVaOERkmzRo0UInnYCnvaVUNCLe5Plt5I9d97llu5lAIHPnejD1p5cNvq7TZrP00VwxNzwVDHk7KiAUYtOugD/T84ChaVISfVRlrDr8awr0RGvhWzuUSKfWP+ygpjF31f+HSGFjps2+24cFhQfl7nlH7E9lhx+gqzR64JY8C+uKKX5a7APdx8WBiAx5pNuxUZNgeQRo4RQJrDkJn6ImPZVw/BGfs9EjDeIcbPcnVG51uvomUQHox1kEN7ZPP3N4nbsveWzXqwlPCiRNYhRiLavW/8RNjkJpyhhniE3POp+XRK9xAV85N/yO4V+P5cp93CTuPwlNM0nFV8noTJGVCiudr/GrDZ3Y4ON2zvNJfyM/u0ZRWQ1QyivymalMKpgYw+0d3fb+5w3vV/73H7y5KNTY3y83coUIyDjq4AEBDQcDBm4MC7Yv8E5XX4n0NLrlCf4g2XjKZdQRafEeujLhd7nRsl1DcP2ko8HPvoHpUKs7UDFw== jenkins-agent-key
+root@host-2:/home/jenkins/.ssh# exit
+

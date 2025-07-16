@@ -1,0 +1,69 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+$install_docker_script = <<-SCRIPT
+echo "Installing Docker..."
+sudo apt-get update -y
+sudo apt-get install -y curl git unzip apt-transport-https ca-certificates gnupg lsb-release software-properties-common openjdk-21-jdk maven
+curl -fsSL https://get.docker.com -o get-docker.sh
+sh get-docker.sh
+sudo usermod -aG docker vagrant
+sudo systemctl enable docker
+sudo systemctl start docker
+SCRIPT
+
+BOX_NAME = "bento/ubuntu-24.04"
+MEMORY = "2048"
+CPUS = 2
+SUBNET = "192.168.56."
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.box = BOX_NAME
+
+  # Shared synced folder for the project
+  config.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+
+  # -----------------------------------------------------------
+  # VM 1: devops-master (Jenkins + Swarm Manager + Portainer)
+  # -----------------------------------------------------------
+  config.vm.define "master" do |master|
+    master.vm.hostname = "devops-master"
+    master.vm.network "private_network", ip: "#{SUBNET}20"
+    master.vm.provider "virtualbox" do |vb|
+      vb.memory = MEMORY
+      vb.cpus = CPUS
+      vb.name = "devops-master"
+    end
+    master.vm.provision "shell", inline: $install_docker_script
+  end
+
+  # -----------------------------------------------------------
+  # VM 2: host-1 (Jenkins agent + Swarm Worker)
+  # -----------------------------------------------------------
+  config.vm.define "host-1" do |host1|
+    host1.vm.hostname = "host-1"
+    host1.vm.network "private_network", ip: "#{SUBNET}21"
+    host1.vm.provider "virtualbox" do |vb|
+      vb.memory = MEMORY
+      vb.cpus = CPUS
+      vb.name = "host-1"
+    end
+    host1.vm.provision "shell", inline: $install_docker_script
+  end
+
+  # -----------------------------------------------------------
+  # VM 3: host-2 (Jenkins agent + Swarm Worker)
+  # -----------------------------------------------------------
+  config.vm.define "host-2" do |host2|
+    host2.vm.hostname = "host-2"
+    host2.vm.network "private_network", ip: "#{SUBNET}22"
+    host2.vm.provider "virtualbox" do |vb|
+      vb.memory = MEMORY
+      vb.cpus = CPUS
+      vb.name = "host-2"
+    end
+    host2.vm.provision "shell", inline: $install_docker_script
+  end
+end
+
