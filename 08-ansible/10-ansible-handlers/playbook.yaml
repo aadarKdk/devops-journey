@@ -1,0 +1,32 @@
+---
+- name: Verify apache installation
+  hosts: webservers
+  become: yes
+  vars:
+    http_port: 80
+    max_clients: 200
+  remote_user: root
+  tasks:
+    - name: Ensure apache is at the latest version
+      ansible.builtin.apt:
+        name: apache2
+        state: latest
+        update_cache: yes
+    - name: Write the apache2 config file
+      template:
+        src: template-files/apache2.conf.j2
+        dest: /etc/apache2/apache2.conf
+      notify:
+        - Restart apache2
+
+    - name: Ensure apache2 is running
+      service:
+        name: apache2
+        state: started
+
+  handlers:
+    - name: Restart apache2
+      service:
+        name: apache2
+        state: restarted
+
