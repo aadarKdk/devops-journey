@@ -1,0 +1,75 @@
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy 
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role install geerlingguy.docker
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role list
+# /home/vagrant/.ansible/roles
+- geerlingguy.docker, 7.4.7
+[WARNING]: - the configured path /usr/share/ansible/roles does not exist.
+[WARNING]: - the configured path /etc/ansible/roles does not exist.
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role --help
+positional arguments:
+  ROLE_ACTION
+    init       Initialize new role with the base structure of a role.
+    remove     Delete roles from roles_path.
+    delete     Removes the role from Galaxy. It does not remove or alter the actual GitHub repository.
+    list       Show the name and version of each role installed in the roles_path.
+    search     Search the Galaxy database by tags, platforms, author and multiple keywords.
+    import     Import a role into a galaxy server
+    setup      Manage the integration between Galaxy and the given source.
+    info       View more details about a specific role.
+    install    Install role(s) from file(s), URL(s) or Ansible Galaxy
+
+options:
+  -h, --help   show this help message and exit
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role info geerlingguy.docker
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role remove geerlingguy.docker
+- successfully removed geerlingguy.docker
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role list
+# /home/vagrant/.ansible/roles
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ ansible-galaxy role install geerlingguy.docker
+Starting galaxy role install process
+- downloading role 'docker', owned by geerlingguy
+- downloading role from https://github.com/geerlingguy/ansible-role-docker/archive/7.4.7.tar.gz
+- extracting geerlingguy.docker to /home/vagrant/.ansible/roles/geerlingguy.docker
+- geerlingguy.docker (7.4.7) was installed successfully
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ cd /home/vagrant/.ansible/
+(myenv) vagrant@control-node:~/.ansible$ ls
+cp  galaxy_cache  galaxy_token  roles  tmp
+(myenv) vagrant@control-node:~/.ansible$ cd roles/
+(myenv) vagrant@control-node:~/.ansible/roles$ ls
+geerlingguy.docker
+(myenv) vagrant@control-node:~/.ansible/roles$ cd geerlingguy.docker/
+(myenv) vagrant@control-node:~/.ansible/roles/geerlingguy.docker$ ls
+defaults  handlers  LICENSE  meta  molecule  README.md  tasks  vars
+(myenv) vagrant@control-node:~/.ansible/roles/geerlingguy.docker$ tree
+.
+├── defaults
+│   └── main.yml
+├── handlers
+│   └── main.yml
+├── LICENSE
+├── meta
+│   └── main.yml
+├── molecule
+│   └── default
+│       ├── converge.yml
+│       ├── molecule.yml
+│       └── verify.yml
+├── README.md
+├── tasks
+│   ├── docker-compose.yml
+│   ├── docker-users.yml
+│   ├── main.yml
+│   ├── setup-Debian.yml
+│   └── setup-RedHat.yml
+└── vars
+    ├── Alpine.yml
+    ├── Archlinux.yml
+    ├── Debian.yml
+    ├── main.yml
+    └── RedHat.yml
+
+8 directories, 18 files
+(myenv) vagrant@control-node:~/.ansible/roles/geerlingguy.docker$ 
+
+

@@ -1,0 +1,38 @@
+#SPDX-License-Identifier: MIT-0
+---
+# tasks file for demo-app
+
+- name: Ensure apache is at the latest version
+  ansible.builtin.apt:
+    name: apache2
+    state: latest
+    update_cache: yes
+- name: Write the apache2 config file
+  template:
+    src: apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
+  notify:
+    - Restart apache2
+
+- name: Ensure apache2 is running
+  service:
+    name: apache2
+    state: started
+
+- name: Create a directory in a remote machine
+  file:
+    path: /opt/tmpdir
+    state: directory
+    mode: 0755
+
+- name: Copy file to the remote machine's directory
+  copy:
+    src: index.html
+    dest: /opt/tmpdir
+
+- name: Create users using loop
+  user:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ user_list }}"
+

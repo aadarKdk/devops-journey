@@ -1,0 +1,57 @@
+  control-node:
+  857  cp -r ansible-roles/ ansible-vault
+  858  ls
+  859  cd ansible-vault/
+  862  ls
+  863  source myenv/bin/activate
+  865  cd ansible-examples/
+  866  ls
+  867  cd ansible-vault/
+  868  ls
+  870  ansible-galaxy 
+  871  ansible-galaxy role
+  872  ansible-galaxy role install geerlingguy.docker
+  873  ansible-galaxy role list
+  874  ansible-galaxy role --help
+  875  ansible-galaxy role info geerlingguy.docker
+  876  ansible-galaxy role remove geerlingguy.docker
+  877  ansible-galaxy role list
+  878  ansible-galaxy role install geerlingguy.docker
+  879  cd /home/vagrant/.ansible/
+  880  ls
+  881  cd roles/
+  882  ls
+  883  cd geerlingguy.docker/
+  884  ls
+  885  tree
+  887  ls
+  888  ansible-vault starts
+  889  clear
+  890  cd
+  891  cd ansible-examples/ansible-vault/
+  892  ls
+  893  ansible-playbook playbook.yaml 
+  894  ls
+  895  cat inventory 
+  896  ansible-vault 
+  897  ansible-vault --help
+  898  ansible-vault encrypt inventory 
+  899  ls
+  900  cat inventory 
+  901  vim inventory 
+  902  ansible-vault edit inventory 
+  903  ansible-playbook playbook.yaml 
+  904  ansible-playbook --help
+  905  ansible-playbook playbook.yaml -J
+  906  ansible-playbook playbook.yaml --ask-vault-password
+  907  vim /home/vagrant/mypass
+  908  ansible-playbook --vault-password-file=/home/vagrant/mypass playbook.yaml 
+  909  ansible-vault decrypt inventory 
+  910  cat inventory 
+  911  ansible-vault encrypt inventory 
+  912  cat inventory 
+  913  ls
+  914  scp -r ~/ansible-examples/ansible-vault/* aadar@192.168.1.75:/home/aadar/devops-journey/08-ansible/12-ansible-vault/
+(myenv) vagrant@control-node:~/ansible-examples/ansible-vault$ 
+
+
