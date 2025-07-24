@@ -1,0 +1,31 @@
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl run nginx-pod --image=nginx
+pod/nginx-pod created
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          46s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe pod nginx-pod
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pod nginx-pod -o wide
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl exec -it nginx-pod -- /bin/sh
+# ls
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+# whoami
+root
+# pwd
+/
+# cat /etc/os-release
+PRETTY_NAME="Debian GNU/Linux 12 (bookworm)"
+NAME="Debian GNU/Linux"
+VERSION_ID="12"
+VERSION="12 (bookworm)"
+VERSION_CODENAME=bookworm
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+# exit
+
+ 
+

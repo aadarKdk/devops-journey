@@ -1,0 +1,45 @@
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl create deployment nginx --image=nginx
+deployment.apps/nginx created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+NAME    READY   UP-TO-DATE   AVAILABLE   AGE
+nginx   1/1     1            1           104s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe deployment nginx
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl expose deployment nginx --type=NodePort --port=80
+service/nginx exposed
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube service nginx
+|-----------|-------|-------------|---------------------------|
+| NAMESPACE | NAME  | TARGET PORT |            URL            |
+|-----------|-------|-------------|---------------------------|
+| default   | nginx |          80 | http://192.168.49.2:30349 |
+|-----------|-------|-------------|---------------------------|
+🎉  Opening service default/nginx in default browser...
+aadarkdk@pop-os:~/Desktop/minikube$ Gtk-Message: 15:33:02.034: Failed to load module "canberra-gtk-module"
+Gtk-Message: 15:33:02.034: Failed to load module "canberra-gtk-module"
+[0724/153302.066379:WARNING:chrome/app/chrome_main_linux.cc:82] Read channel stable from /app/extra/CHROME_VERSION_EXTRA
+[0724/153302.155296:WARNING:chrome/app/chrome_main_linux.cc:82] Read channel stable from /app/extra/CHROME_VERSION_EXTRA
+Opening in existing browser session.
+
+adarkdk@pop-os:~/Desktop/minikube$ watch kubectl get pods
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl logs nginx-5869d7778c-nv886
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete service nginx
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pod
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete deployment nginx
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pod
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get events
+
