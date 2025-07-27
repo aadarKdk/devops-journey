@@ -19,4 +19,13 @@ aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
 
 aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe rs nginx-replicaset
 
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl set --help
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl set image --help
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl edit replicaset nginx-replicaset
+replicaset.apps/nginx-replicaset edited
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+
 
