@@ -1,0 +1,22 @@
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl explain replicaset
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim nginx-rs.yaml 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f nginx-rs.yaml 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get replicaset
+NAME               DESIRED   CURRENT   READY   AGE
+nginx-replicaset   4         4         4       3m3s
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete pod nginx-replicaset-crjrh 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl scale rs nginx-replicaset --replicas=6
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe rs nginx-replicaset
+
+
