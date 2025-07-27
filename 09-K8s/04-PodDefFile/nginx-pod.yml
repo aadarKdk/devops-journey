@@ -5,6 +5,7 @@ metadata:
   labels:
     owner: frontend
     app: nginx-app
+    type: dev
 
 spec:
  containers:

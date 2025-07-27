@@ -34,9 +34,15 @@ pod/nginx-pod created
 aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pod
 NAME        READY   STATUS    RESTARTS   AGE
 nginx-pod   1/1     Running   0          6s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+nginx-pod   1/1     Running   0          13m   10.244.0.31   minikube   <none>           <none>
+
 aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete -f nginx-pod.yml 
 pod "nginx-pod" deleted
 aadarkdk@pop-os:~/Desktop/minikube$  
 
 aadarkdk@pop-os:~/Desktop/minikube$ minikube stop
+
 
