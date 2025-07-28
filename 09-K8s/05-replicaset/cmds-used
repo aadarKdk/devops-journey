@@ -28,4 +28,9 @@ replicaset.apps/nginx-replicaset edited
 
 aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
 
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe rs
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl scale --replicas=6 replicaset nginx-replicaset
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete rs nginx-replicaset
 
