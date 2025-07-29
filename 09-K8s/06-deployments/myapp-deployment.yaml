@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: dev
+
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      owner: frontend
+  template:
+    metadata:
+      labels:
+        owner: frontend
+        app: myapp
+        type: dev
+    spec:
+      containers:
+        - name: nginx-app
+          image: nginx:1.28.0
+          ports:
+            - containerPort: 80
