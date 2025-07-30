@@ -1,0 +1,49 @@
+aadarkdk@pop-os:~/Desktop/minikube$ minikube start
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc -o wide
+NAME         TYPE        CLUSTER-IP   EXTERNAL-IP   PORT(S)   AGE     SELECTOR
+kubernetes   ClusterIP   10.96.0.1    <none>        443/TCP   6d20h   <none>
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl explain service
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl explain service --recursive
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl explain service.spec.type
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim nginx-deployment.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim myservice.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f nginx-deployment.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-7966689595-gv89f   1/1     Running   0          59s
+nginx-deployment-7966689595-m9vsp   1/1     Running   0          59s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get nodes
+NAME       STATUS   ROLES           AGE     VERSION
+minikube   Ready    control-plane   6d23h   v1.33.1
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f myservice.yaml 
+service/mysvc created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods --show-labels
+NAME                                READY   STATUS    RESTARTS   AGE     LABELS
+nginx-deployment-7966689595-gv89f   1/1     Running   0          2m11s   owner=frontend,pod-template-hash=7966689595
+nginx-deployment-7966689595-m9vsp   1/1     Running   0          2m11s   owner=frontend,pod-template-hash=7966689595
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get endpoints mysvc
+Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
+NAME    ENDPOINTS                        AGE
+mysvc   10.244.0.100:80,10.244.0.99:80   80s
+aadarkdk@pop-os:~/Desktop/minikube$ 
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube service mysvc --url
+http://192.168.49.2:30008
+
+
