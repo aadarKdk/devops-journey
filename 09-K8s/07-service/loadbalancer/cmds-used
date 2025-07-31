@@ -1,0 +1,61 @@
+aadarkdk@pop-os:~/Desktop/minikube$ vim deployment.yaml
+aadarkdk@pop-os:~/Desktop/minikube$ vim service-lb.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f deployment.yaml 
+deployment.apps/myapp created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f service-lb.yaml 
+service/mysvc configured
+
+on different terminal:
+aadarkdk@pop-os:~/Desktop/minikube$ minikube tunnel
+[sudo] password for aadarkdk: 
+Status:	
+	machine: minikube
+	pid: 63029
+	route: 10.96.0.0/12 -> 192.168.49.2
+	minikube: Running
+	services: []
+    errors: 
+		minikube: no errors
+		router: no errors
+		loadbalancer emulator: no errors
+Status:	
+	machine: minikube
+	pid: 63029
+	route: 10.96.0.0/12 -> 192.168.49.2
+	minikube: Running
+	services: [mysvc]
+    errors: 
+		minikube: no errors
+		router: no errors
+		loadbalancer emulator: no errors
+
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc mysvc
+NAME    TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)        AGE
+mysvc   LoadBalancer   10.101.232.255   10.101.232.255   80:30008/TCP   22h
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc
+NAME         TYPE           CLUSTER-IP       EXTERNAL-IP      PORT(S)        AGE
+kubernetes   ClusterIP      10.96.0.1        <none>           443/TCP        7d20h
+mysvc        LoadBalancer   10.101.232.255   10.101.232.255   80:30008/TCP   23h
+aadarkdk@pop-os:~/Desktop/minikube$ 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+NAME                     READY   STATUS    RESTARTS      AGE
+myapp-58dbdb69b8-fxckq   1/1     Running   1 (41m ago)   50m
+myapp-58dbdb69b8-s7s2j   1/1     Running   1 (41m ago)   50m
+aadarkdk@pop-os:~/Desktop/minikube$ 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get namespaces
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods -n kube-system
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc -n kube-system
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get all
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get all --all-namespaces
+
+
