@@ -1,0 +1,6 @@
+* [Virtualization](https://en.wikipedia.org/wiki/Virtualization)
+* [Cloud_computing](https://en.wikipedia.org/wiki/Cloud_computing)
+* [aws global-infrastructure](https://aws.amazon.com/about-aws/global-infrastructure/)
+* [aws-Overview](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html)
+* [AWS services](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/amazon-web-services-cloud-platform.html)
+* [create an aws account](https://docs.aws.amazon.com/accounts/latest/reference/manage-acct-creating.html)
