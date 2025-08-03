@@ -41,9 +41,28 @@ aadarkdk@pop-os:~/Desktop/minikube$ kubectl get endpoints mysvc
 Warning: v1 Endpoints is deprecated in v1.33+; use discovery.k8s.io/v1 EndpointSlice
 NAME    ENDPOINTS                        AGE
 mysvc   10.244.0.100:80,10.244.0.99:80   80s
-aadarkdk@pop-os:~/Desktop/minikube$ 
 
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP        7d19h
+mysvc        NodePort    10.101.232.255   <none>        80:30008/TCP   22h
+ 
 aadarkdk@pop-os:~/Desktop/minikube$ minikube service mysvc --url
 http://192.168.49.2:30008
 
+-------------------------------------------------------------------------------------------------------------------------
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim myservice-ClusterIP.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f myservice-ClusterIP.yaml 
+service/mysvc configured
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube service mysvc --url
+😿  service default/mysvc has no node port
+❗  Services [default/mysvc] have type "ClusterIP" not meant to be exposed, however for local development minikube allows you to access this !
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get svc
+NAME         TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)   AGE
+kubernetes   ClusterIP   10.96.0.1        <none>        443/TCP   7d
+mysvc        ClusterIP   10.101.232.255   <none>        80/TCP    3h38m
 
