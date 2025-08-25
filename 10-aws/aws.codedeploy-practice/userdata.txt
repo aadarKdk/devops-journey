@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e  # Exit on error
+
+# Variables
+REGION="us-east-1"   # Change this to your instance's region
+INSTALL_DIR="/home/ubuntu"
+
+# Update and install dependencies
+apt-get update -y
+apt-get install -y ruby wget
+
+# Download and install CodeDeploy agent
+cd $INSTALL_DIR
+wget https://aws-codedeploy-${REGION}.s3.${REGION}.amazonaws.com/latest/install
+chmod +x ./install
+./install auto
+
+# Enable and start CodeDeploy agent
+systemctl enable codedeploy-agent
+systemctl start codedeploy-agent
+
+# Clean up installer
+rm install
+
+echo "CodeDeploy agent installed successfully."
+
