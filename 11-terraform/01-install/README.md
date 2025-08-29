@@ -13,9 +13,11 @@ sudo apt update && sudo apt install terraform
 ```
 vagrant@vagrant:~$ terraform -v
 ```
+It shows versions like:
+```
 Terraform v1.13.1
 on linux_amd64
-
+```
 
 
 
