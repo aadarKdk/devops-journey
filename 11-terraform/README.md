@@ -1,0 +1,2 @@
+- [Terraform docs](https://developer.hashicorp.com/terraform/docs)
+- [OpenTofu docs](https://opentofu.org/docs/intro/)
