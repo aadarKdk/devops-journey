@@ -26,13 +26,13 @@ Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-My_instance_Lifecycle = ""
-My_instance_Security_group = toset([
++   My_instance_Lifecycle = ""
++   My_instance_Security_group = toset([
   "demo-sg-aadarsha-khadka",
 ])
-My_instance_Subnet_ID = "subnet-029d70ed8f17aa867"
-My_instance_private_IP = "172.31.17.58"
-My_instance_public_IP = "34.207.251.164"
-My_instance_public_URL = "ec2-34-207-251-164.compute-1.amazonaws.com"
-My_instance_state = "running"
++   My_instance_Subnet_ID = "subnet-029d70ed8f17aa867"
++   My_instance_private_IP = "172.31.17.58"
++   My_instance_public_IP = "34.207.251.164"
++   My_instance_public_URL = "ec2-34-207-251-164.compute-1.amazonaws.com"
++   My_instance_state = "running"
 
