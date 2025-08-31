@@ -1,0 +1,61 @@
+aadarkdk@pop-os:~$ cd Desktop/aws/
+aadarkdk@pop-os:~/Desktop/aws$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/aws$ vagrant up
+aadarkdk@pop-os:~/Desktop/aws$ vagrant ssh
+
+vagrant@vagrant:~$ mkdir 04-provisioners
+
+vagrant@vagrant:~/04-provisioners$ ls
+vagrant@vagrant:~/04-provisioners$ cp ../03-minimal-module/* .
+vagrant@vagrant:~/04-provisioners$ ls
+main.tf  providers.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf
+vagrant@vagrant:~/04-provisioners$ ls -al
+
+vagrant@vagrant:~/04-provisioners$ rm -rf terraform.tfstate terraform.tfstate.backup 
+
+vagrant@vagrant:~/04-provisioners$ ls
+main.tf  providers.tf  variables.tf
+
+vagrant@vagrant:~/04-provisioners$ cat providers.tf 
+
+vagrant@vagrant:~/04-provisioners$ cat variables.tf 
+
+vagrant@vagrant:~/04-provisioners$ cat main.tf 
+
+vagrant@vagrant:~/04-provisioners$ vim install-apache2.sh 
+
+vagrant@vagrant:~/04-provisioners$ vim main.tf 
+
+vagrant@vagrant:~/04-provisioners$ ls
+install-apache2.sh  main.tf  providers.tf  variables.tf
+
+vagrant@vagrant:~/04-provisioners$ terraform init
+
+vagrant@vagrant:~/04-provisioners$ ls -al
+
+vagrant@vagrant:~/04-provisioners$ terraform plan
+
+vagrant@vagrant:/vagrant$ mv demo-aadarsha-key-pair.pem /home/vagrant/04-provisioners/
+
+vagrant@vagrant:/vagrant$ cd /home/vagrant/04-provisioners/
+
+vagrant@vagrant:~/04-provisioners$ mv demo-aadarsha-key-pair.pem mykey-pair.pem
+
+vagrant@vagrant:~/04-provisioners$ ls
+install-apache2.sh  main.tf  mykey-pair.pem  providers.tf  terraform.tfstate  variables.tf
+
+vagrant@vagrant:~/04-provisioners$ terraform fmt
+main.tf
+variables.tf
+
+vagrant@vagrant:~/04-provisioners$ terraform validate
+Success! The configuration is valid.
+
+vagrant@vagrant:~/04-provisioners$ terraform plan
+
+vagrant@vagrant:~/04-provisioners$ terraform apply
+
+vagrant@vagrant:~/04-provisioners$ cat terraform.tfstate
+
+
