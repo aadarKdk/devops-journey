@@ -36,3 +36,4 @@ Outputs:
 +   My_instance_public_URL = "ec2-34-207-251-164.compute-1.amazonaws.com"
 +   My_instance_state = "running"
 
+docs: [here](https://developer.hashicorp.com/terraform/language/values/outputs)
