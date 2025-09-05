@@ -1,0 +1,81 @@
+aadarkdk@pop-os:~$ cd Desktop/observability/
+aadarkdk@pop-os:~/Desktop/observability$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/observability$ vagrant up
+aadarkdk@pop-os:~/Desktop/observability$ vagrant ssh
+vagrant@vagrant:~$ ls
+
+vagrant@vagrant:~$ vim prometheus.service
+vagrant@vagrant:~$ vim install-prometheus.sh
+vagrant@vagrant:~$ chmod +x install-prometheus.sh 
+vagrant@vagrant:~$ ./install-prometheus.sh 
+
+
+
+vagrant@vagrant:~$ sudo systemctl status prometheus
+● prometheus.service - Prometheus Monitoring
+     Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; preset: enabled)
+     Active: active (running) since Thu 2025-09-04 16:19:33 UTC; 1min 4s ago
+   Main PID: 1939 (prometheus)
+      Tasks: 8 (limit: 1065)
+     Memory: 20.8M (peak: 21.2M)
+        CPU: 96ms
+     CGroup: /system.slice/prometheus.service
+             └─1939 /usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml --storage.tsdb.path /var/lib/prometheus/
+
+
+
+vagrant@vagrant:~$ prometheus --version
+prometheus, version 3.5.0 (branch: HEAD, revision: 8be3a9560fbdd18a94dedec4b747c35178177202)
+  build user:       root@4451b64cb451
+  build date:       20250714-16:15:23
+  go version:       go1.24.5
+  platform:         linux/amd64
+  tags:             netgo,builtinassets
+vagrant@vagrant:~$ 
+
+
+vagrant@vagrant:~$ promtool --version
+promtool, version 3.5.0 (branch: HEAD, revision: 8be3a9560fbdd18a94dedec4b747c35178177202)
+  build user:       root@4451b64cb451
+  build date:       20250714-16:15:23
+  go version:       go1.24.5
+  platform:         linux/amd64
+  tags:             netgo,builtinassets
+vagrant@vagrant:~$ 
+
+
+vagrant@vagrant:~$ promtool check config /etc/prometheus/prometheus.yml
+Checking /etc/prometheus/prometheus.yml
+ SUCCESS: /etc/prometheus/prometheus.yml is valid prometheus config file syntax
+
+
+vagrant@vagrant:~$ curl http://localhost:9090/metrics
+
+vagrant@vagrant:~$ sudo journalctl -u prometheus -f
+
+
+vagrant@vagrant:~$ ls -l /var/lib/prometheus
+total 12
+drwxr-xr-x 2 prometheus prometheus  4096 Sep  4 16:19 chunks_head
+-rw-r--r-- 1 prometheus prometheus     0 Sep  4 16:19 lock
+-rw-r--r-- 1 prometheus prometheus 20001 Sep  4 16:19 queries.active
+drwxr-xr-x 2 prometheus prometheus  4096 Sep  4 16:19 wal
+
+vagrant@vagrant:~$ rm prometheus-3.5.0.linux-amd64.tar.gz 
+
+
+vagrant@vagrant:~$ tree
+.
+├── install-prometheus.sh
+├── prometheus-3.5.0.linux-amd64
+│   ├── LICENSE
+│   ├── NOTICE
+│   ├── prometheus
+│   ├── prometheus.yml
+│   └── promtool
+└── prometheus.service
+
+2 directories, 7 files
+vagrant@vagrant:~$ 
+
