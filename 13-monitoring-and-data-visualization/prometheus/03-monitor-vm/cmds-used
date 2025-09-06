@@ -1,0 +1,87 @@
+node:
+
+aadarkdk@pop-os:~$ cd Desktop/
+aadarkdk@pop-os:~/Desktop$ cd monitor-vm/
+aadarkdk@pop-os:~/Desktop/monitor-vm$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vim Vagrantfile 
+aadarkdk@pop-os:~/Desktop/monitor-vm$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/monitor-vm$ cat Vagrantfile 
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vagrant up
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vagrant ssh
+vagrant@vagrant:~$ ls
+vagrant@vagrant:~$ ip addr show
+inet 192.168.56.25/24
+
+vagrant@vagrant:~$ vim install-node_exporter.sh
+vagrant@vagrant:~$ vim node_exporter.service
+vagrant@vagrant:~$ chmod +x install-node_exporter.sh 
+vagrant@vagrant:~$ ls
+install-node_exporter.sh  node_exporter.service
+vagrant@vagrant:~$ ./install-node_exporter.sh 
+
+vagrant@vagrant:~$ node_exporter --version
+node_exporter, version 1.9.1 (branch: HEAD, revision: f2ec547b49af53815038a50265aa2adcd1275959)
+  build user:       root@7023beaa563a
+  build date:       20250401-15:19:01
+  go version:       go1.23.7
+  platform:         linux/amd64
+  tags:             unknown
+vagrant@vagrant:~$ sudo systemctl status node_exporter
+● node_exporter.service - Node Exporter
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-09-06 06:27:21 UTC; 1min 10s ago
+   Main PID: 2181 (node_exporter)
+      Tasks: 5 (limit: 1065)
+     Memory: 2.7M (peak: 2.8M)
+        CPU: 19ms
+     CGroup: /system.slice/node_exporter.service
+             └─2181 /usr/local/bin/node_exporter
+
+vagrant@vagrant:~$ curl localhost:9100/metrics
+
+vagrant@vagrant:~$ ls
+install-node_exporter.sh  node_exporter-1.9.1.linux-amd64  node_exporter-1.9.1.linux-amd64.tar.gz  node_exporter.service
+vagrant@vagrant:~$ rm -r node_exporter-1.9.1.linux-amd64.tar.gz 
+vagrant@vagrant:~$ cd node_exporter-1.9.1.linux-amd64/
+vagrant@vagrant:~/node_exporter-1.9.1.linux-amd64$ ls
+LICENSE  node_exporter  NOTICE
+
+
+---------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------
+
+
+prometheus_vm:
+
+vagrant@vagrant:~$ sudo systemctl status prometheus
+● prometheus.service - Prometheus Monitoring
+     Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-09-06 04:21:36 UTC; 8min ago
+   Main PID: 949 (prometheus)
+      Tasks: 8 (limit: 1065)
+     Memory: 99.3M (peak: 122.3M)
+        CPU: 4.301s
+     CGroup: /system.slice/prometheus.service
+             └─949 /usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml --storage.tsdb.path /var/lib/prometheus/
+
+vagrant@vagrant:~$ ls /etc/prometheus/prometheus.yml 
+/etc/prometheus/prometheus.yml
+vagrant@vagrant:~$ cd /etc/prometheus/
+vagrant@vagrant:/etc/prometheus$ ls
+prometheus.yml
+vagrant@vagrant:/etc/prometheus$ sudo vim prometheus.yml 
+vagrant@vagrant:/etc/prometheus$ sudo systemctl restart prometheus
+vagrant@vagrant:/etc/prometheus$ sudo systemctl status prometheus
+● prometheus.service - Prometheus Monitoring
+     Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; preset: enabled)
+     Active: active (running) since Sat 2025-09-06 06:43:11 UTC; 13s ago
+   Main PID: 2347 (prometheus)
+      Tasks: 8 (limit: 1065)
+     Memory: 32.3M (peak: 32.7M)
+        CPU: 182ms
+     CGroup: /system.slice/prometheus.service
+             └─2347 /usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml --storage.tsdb.path /var/lib/prometheus/
+
+
