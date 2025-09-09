@@ -1,0 +1,227 @@
+prometheus-vm(prometheus):
+
+aadarkdk@pop-os:~$ cd Desktop/observability/
+aadarkdk@pop-os:~/Desktop/observability$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/observability$ vagrant up
+
+aadarkdk@pop-os:~/Desktop/observability$ vagrant status
+aadarkdk@pop-os:~/Desktop/observability$ vagrant ssh
+vagrant@vagrant:~$ ls -la
+vagrant@vagrant:~$ vim install-prometheus.sh
+vagrant@vagrant:~$ chmod +x install-prometheus.sh 
+vagrant@vagrant:~$ vim prometheus.service
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus.service
+vagrant@vagrant:~$ ./install-prometheus.sh 
+
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus-3.5.0.linux-amd64  prometheus-3.5.0.linux-amd64.tar.gz  prometheus.service
+vagrant@vagrant:~$ rm prometheus-3.5.0.linux-amd64.tar.gz 
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus-3.5.0.linux-amd64  prometheus.service
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus-3.5.0.linux-amd64  prometheus.service
+vagrant@vagrant:~$ sudo systemctl status prometheus
+
+vagrant@vagrant:~$ sudo systemctl status prometheus
+
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus-3.5.0.linux-amd64  prometheus.service
+vagrant@vagrant:~$ ping -c 3 192.168.56.25
+PING 192.168.56.25 (192.168.56.25) 56(84) bytes of data.
+64 bytes from 192.168.56.25: icmp_seq=1 ttl=64 time=0.447 ms
+64 bytes from 192.168.56.25: icmp_seq=2 ttl=64 time=0.567 ms
+64 bytes from 192.168.56.25: icmp_seq=3 ttl=64 time=0.535 ms
+--- 192.168.56.25 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2086ms
+rtt min/avg/max/mdev = 0.447/0.516/0.567/0.050 ms
+
+vagrant@vagrant:~$ cd /etc/prometheus/
+vagrant@vagrant:/etc/prometheus$ ls
+prometheus.yml
+vagrant@vagrant:/etc/prometheus$ sudo mkdir -p /etc/prometheus/certs
+vagrant@vagrant:/etc/prometheus$ ls
+certs  prometheus.yml
+vagrant@vagrant:/etc/prometheus$ sudo mv /tmp/node_exporter.crt /etc/prometheus/certs/
+vagrant@vagrant:/etc/prometheus$ ls
+certs  prometheus.yml
+vagrant@vagrant:/etc/prometheus$ cd certs/
+vagrant@vagrant:/etc/prometheus/certs$ ls
+node_exporter.crt
+vagrant@vagrant:/etc/prometheus/certs$ sudo chown prometheus:prometheus /etc/prometheus/certs/node_exporter.crt
+vagrant@vagrant:/etc/prometheus/certs$ sudo chmod 644 /etc/prometheus/certs/node_exporter.crt
+vagrant@vagrant:/etc/prometheus/certs$ ls
+node_exporter.crt
+vagrant@vagrant:/etc/prometheus/certs$ cd
+vagrant@vagrant:~$ ls
+install-prometheus.sh  prometheus-3.5.0.linux-amd64  prometheus.service
+vagrant@vagrant:~$ cd prometheus-3.5.0.linux-amd64/
+vagrant@vagrant:~/prometheus-3.5.0.linux-amd64$ ls
+LICENSE  NOTICE  prometheus  prometheus.yml  promtool
+vagrant@vagrant:~/prometheus-3.5.0.linux-amd64$ vim prometheus.yml 
+vagrant@vagrant:~/prometheus-3.5.0.linux-amd64$ ls
+LICENSE  NOTICE  prometheus  prometheus.yml  promtool
+vagrant@vagrant:~/prometheus-3.5.0.linux-amd64$ cd
+vagrant@vagrant:~$ sudo vim /etc/prometheus/prometheus.yml 
+vagrant@vagrant:~$ cat prometheus-3.5.0.linux-amd64/prometheus.yml 
+vagrant@vagrant:~$ sudo vim /etc/prometheus/prometheus.yml 
+vagrant@vagrant:~$ sudo systemctl daemon-reload
+vagrant@vagrant:~$ sudo systemctl restart prometheus
+vagrant@vagrant:~$ sudo systemctl status prometheus
+● prometheus.service - Prometheus Monitoring
+     Loaded: loaded (/etc/systemd/system/prometheus.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2025-09-07 11:50:14 UTC; 8s ago
+   Main PID: 3521 (prometheus)
+      Tasks: 8 (limit: 1065)
+     Memory: 21.3M (peak: 21.7M)
+        CPU: 149ms
+     CGroup: /system.slice/prometheus.service
+             └─3521 /usr/local/bin/prometheus --config.file /etc/prometheus/prometheus.yml --storage.tsdb.path /var/lib/prometheus/
+
+
+-------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+monitor-vm(node_exporter):
+aadarkdk@pop-os:~/Desktop/monitor-vm$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vagrant up
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vagrant ssh
+aadarkdk@pop-os:~/Desktop/monitor-vm$ vagrant ssh
+vagrant@vagrant:~$ ls
+vagrant@vagrant:~$ ls -la
+
+vagrant@vagrant:~$ vim install-node_exporter.sh
+vagrant@vagrant:~$ ls
+install-node_exporter.sh
+vagrant@vagrant:~$ chmod +x install-node_exporter.sh 
+vagrant@vagrant:~$ vim node_exporter.service
+vagrant@vagrant:~$ ls
+install-node_exporter.sh  node_exporter.service
+
+install-node_exporter.sh  node_exporter-1.9.1.linux-amd64  node_exporter-1.9.1.linux-amd64.tar.gz  node_exporter.service
+vagrant@vagrant:~$ rm node_exporter-1.9.1.linux-amd64.tar.gz 
+vagrant@vagrant:~$ ls
+install-node_exporter.sh  node_exporter-1.9.1.linux-amd64  node_exporter.service
+
+vagrant@vagrant:~$ node_exporter --version
+node_exporter, version 1.9.1 (branch: HEAD, revision: f2ec547b49af53815038a50265aa2adcd1275959)
+  build user:       root@7023beaa563a
+  build date:       20250401-15:19:01
+  go version:       go1.23.7
+  platform:         linux/amd64
+  tags:             unknown
+vagrant@vagrant:~$ 
+
+vagrant@vagrant:~$ curl http://192.168.56.25:9100/metrics
+
+vagrant@vagrant:~$ sudo mkdir -p /etc/node_exporter/certs && \
+sudo openssl req -newkey rsa:2048 -nodes \
+    -keyout /etc/node_exporter/certs/node_exporter.key \
+    -x509 -days 365 \
+    -out /etc/node_exporter/certs/node_exporter.crt \
+    -subj "/C=NP/ST=Bagmati/L=Kathmandu/O=Thapathali/OU=Campus/CN=nodeexporter.local"
+
+vagrant@vagrant:~$ cd /etc/node_exporter/
+vagrant@vagrant:/etc/node_exporter$ ls
+certs
+vagrant@vagrant:/etc/node_exporter$ cd certs/
+vagrant@vagrant:/etc/node_exporter/certs$ ls
+node_exporter.crt  node_exporter.key
+
+vagrant@vagrant:/etc/node_exporter/certs$ cd ..
+vagrant@vagrant:/etc/node_exporter$ ls
+certs
+vagrant@vagrant:/etc/node_exporter$ vim web-config.yml
+vagrant@vagrant:/etc/node_exporter$ sudo vim web-config.yml
+vagrant@vagrant:/etc/node_exporter$ ls
+certs  web-config.yml
+
+vagrant@vagrant:/etc/node_exporter$ cd
+vagrant@vagrant:~$ sudo vim node_exporter.service 
+vagrant@vagrant:~$ sudo vim /etc/systemd/system/node_exporter.service 
+vagrant@vagrant:~$ ls
+install-node_exporter.sh  node_exporter-1.9.1.linux-amd64  node_exporter.service
+vagrant@vagrant:~$ sudo systemctl daemon-reload
+vagrant@vagrant:~$ sudo systemctl enable node_exporter
+vagrant@vagrant:~$ sudo systemctl restart node_exporter
+vagrant@vagrant:~$ sudo systemctl status node_exporter
+● node_exporter.service - Node Exporter
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; preset: enabled)
+     Active: activating (auto-restart) (Result: exit-code) since Sun 2025-09-07 11:02:49 UTC; 3s ago
+    Process: 2274 ExecStart=/usr/local/bin/node_exporter --web.listen-address=:9100 --web.config.file=/etc/node_exporter/web-config.yml (code=exited, status=1/FAILURE)
+   Main PID: 2274 (code=exited, status=1/FAILURE)
+        CPU: 18ms
+
+vagrant@vagrant:~$ sudo journalctl -u node_exporter -xe
+
+vagrant@vagrant:~$ sudo chown -R node_exporter:node_exporter /etc/node_exporter/certs
+vagrant@vagrant:~$ sudo chmod 640 /etc/node_exporter/certs/node_exporter.key
+vagrant@vagrant:~$ sudo chmod 644 /etc/node_exporter/certs/node_exporter.crt
+vagrant@vagrant:~$ sudo systemctl daemon-reload
+vagrant@vagrant:~$ sudo systemctl restart node_exporter
+vagrant@vagrant:~$ sudo systemctl status node_exporter
+● node_exporter.service - Node Exporter
+     Loaded: loaded (/etc/systemd/system/node_exporter.service; enabled; preset: enabled)
+     Active: active (running) since Sun 2025-09-07 11:06:29 UTC; 6s ago
+   Main PID: 2567 (node_exporter)
+      Tasks: 5 (limit: 1065)
+     Memory: 2.6M (peak: 2.8M)
+        CPU: 21ms
+     CGroup: /system.slice/node_exporter.service
+             └─2567 /usr/local/bin/node_exporter --web.listen-address=:9100 --web.config.file=/etc/node_exporter/web-config.yml
+
+vagrant@vagrant:~$ curl -k https://localhost:9100/metrics
+
+vagrant@vagrant:~$ ping -c 3 192.168.56.24
+PING 192.168.56.24 (192.168.56.24) 56(84) bytes of data.
+64 bytes from 192.168.56.24: icmp_seq=1 ttl=64 time=0.685 ms
+64 bytes from 192.168.56.24: icmp_seq=2 ttl=64 time=0.432 ms
+64 bytes from 192.168.56.24: icmp_seq=3 ttl=64 time=0.425 ms
+--- 192.168.56.24 ping statistics ---
+3 packets transmitted, 3 received, 0% packet loss, time 2044ms
+rtt min/avg/max/mdev = 0.425/0.514/0.685/0.120 ms
+
+vagrant@vagrant:~$ scp /etc/node_exporter/certs/node_exporter.crt vagrant@192.168.56.24:/tmp/
+The authenticity of host '192.168.56.24 (192.168.56.24)' can't be established.
+ED25519 key fingerprint is SHA256:m8gBfa2FCGfgw1LAI9N15vhMhxUySU/nWtlusMed3Dk.
+This key is not known by any other names.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.56.24' (ED25519) to the list of known hosts.
+vagrant@192.168.56.24's password: 
+node_exporter.crt                                                                                                                                          100% 1379     2.4MB/s   00:00    
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
