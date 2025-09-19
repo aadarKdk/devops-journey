@@ -1,0 +1,190 @@
+devops-master:
+vagrant@devops-master:~/devsecops-javacontactbook$ history
+    1  ip addr show
+    2  docker version
+    3  docker swarm init --advertise-addr 192.168.56.20
+    4  docker swarm join-token worker 
+    5  docker node ls
+    6  sudo apt update
+    7  sudo apt install openjdk-21-jdk
+    8  java -version
+    9  sudo mkdir -p /etc/apt/keyrings
+   10  sudo wget -O /etc/apt/keyrings/jenkins-keyring.asc https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+   11  echo "deb [signed-by=/etc/apt/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/" | sudo tee /etc/apt/sources.list.d/jenkins.list > /dev/null
+   12  sudo apt-get update
+   13  sudo apt-get install jenkins
+   14  sudo systemctl start jenkins
+   15  sudo systemctl enable jenkins
+   16  sudo systemctl status jenkins
+   17  cd /var/lib/jenkins/
+   18  ls
+   19  cd secret
+   20  cd secrets
+   21  sudo cd secrets
+   22  sudo su
+   23  cd
+   24  id jenkins
+   25  sudo -u jenkins ssh-keygen -t ed25519 -N "" -f /var/lib/jenkins/.ssh/id_ed25519
+   26  cat /var/lib/jenkins/.ssh/id_ed25519.pub
+   27  sudo cat /var/lib/jenkins/.ssh/id_ed25519.pub
+   28  sudo -u jenkins ssh-keyscan -H 192.168.56.21 >> /var/lib/jenkins/.ssh/known_hosts
+   29  sudo su
+   30  ssh-keygen -t rsa -b 4096 -C "jenkins-agent-key"
+   31  cat ~/.ssh/id_rsa.pub
+   32  sudo systemctl restart jenkins
+   33  ssh jenkins@192.168.56.21
+   34  cd ~/.ssh/id_rsa
+   35  cd ~/.ssh/
+   36  ls
+   37  cat id_rsa.pub 
+   38  cat id_rsa
+   39  cd
+   40  docker volume create portainer_data
+   41  docker run -d -p 9000:9000 -p 9443:9443 --name portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:lts
+   42  docker ps
+   43  docker restart portainer
+   44  docker ps
+   45  exit
+   46  sudo nano /etc/hosts
+   47  sudo nano /etc/docker/daemon.json
+   48  sudo systemctl daemon-reexec
+   49  sudo systemctl restart docker
+   50  curl -k https://192.168.56.10
+   51  docker login 192.168.56.10
+   52  exit
+   53  docker pull alpine
+   54  docker tag alpine 192.168.56.10/library/alpine:test
+   55  docker push 192.168.56.10/library/alpine:test
+   56  trivy --version
+   57  wget -q -O - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+   58  echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee -a /etc/apt/sources.list.d/trivy.list
+   59  sudo apt-get update
+   60  sudo apt-get install trivy
+   61  trivy --version
+   62  exit
+   63  ls
+   64  git clone https://github.com/erkdk/devsecops-javacontactbook.git
+   65  ls
+   66  rm -r devsecops-javacontactbook/
+   67  rm -rf devsecops-javacontactbook/
+   68  ls
+   69  git clone https://github.com/erkdk/devsecops-javacontactbook.git
+   70  exit
+   71  ls
+   72  cd devsecops-javacontactbook/
+   73  ls
+   74  mvn clean package
+   75  git remote -v
+   76  ls
+   77  cd target/
+   78  ls
+   79  cd ..
+   80  cd devsecops-javacontactbook/
+   81  ls
+   82  vim Dockerfile
+   83  docker build -t testapp:v1 .
+   84  docker run -d -p 9090:8080 testapp:v1
+   85  docker ps
+   86  docker stop 8ec39d1af5ff
+   87  docker ps
+   88  docker rm 8ec39d1af5ff
+   89  docker rmi testapp:v1
+   90  git branch -a
+   91  git checkout initial-setup
+   92  git branch -a
+   93  vim Dockerfile 
+   94  ls
+   95  git add .
+   96  git commit -m "project built and Dockerfile written"
+   97  git push
+   98  ssh -T git@github.com
+   99  ls -l ~/.ssh
+  100  cat ~/.ssh/id_rsa.pub
+  101  ssh -T git@github.com
+  102  git remote set-url origin git@github.com:erkdk/devsecops-javacontactbook.git
+  103  git remote -v
+  104  git pull
+  105  git push
+  106  sudo usermod -aG docker jenkins
+  107  exit
+  108  systemctl restart jenkins
+  109  ls
+  110  cd devsecops-javacontactbook/
+  111  ls
+  112  vim docker-stack.yml
+  113  ls
+  114  git add .
+  115  git commit -m "docker-stack.yml file to define service"
+  116  git push
+  117  docker node ls
+  118  docker images
+  119  docker ps -a
+  120  docker ps
+  121  docker service ps contactbook_contactbook --no-trunc
+  122  vim Dockerfile 
+  123  vim docker-stack.yml 
+  124  docker service scale contactbook_contactbook=4
+  125  clear
+  126  exit
+  127  ls
+  128  cd devsecops-javacontactbook/
+  129  ls
+  130  git add .
+  131  git status
+  132  vim Jenkinsfile
+  133  vim Dockerfile 
+  134  vim docker-stack.yml 
+  135  vim Dockerfile 
+  136  git add .
+  137  git commit -m "devsecops-javacontactbook updated"
+  138  git push
+  139  docker ps
+  140  clear
+  141  docker node ls
+  142  docker service scale contactbook_contactbook=4
+  143  clear
+  144  docker node ls
+  145  docker ps
+  146  docker service scale contactbook_contactbook=8
+  147  docker ps
+  148  docker images
+  149  history
+  150  exit
+  151  ls
+  152  cd devsecops-javacontactbook/
+  153  ls
+  154  vim Dockerfile 
+  155  vim docker-stack.yml 
+  156  vim Jenkinsfile 
+  157  git add .
+  158  git commit -m "reviewed the Dockerfile docker-stack.yml and Jenkinsfile(correction needed)"
+  159  git push
+  160  history
+vagrant@devops-master:~/devsecops-javacontactbook$ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vagrant@devops-master:/var/lib/jenkins$ sudo su
+root@devops-master:/var/lib/jenkins# cd secrets
+root@devops-master:/var/lib/jenkins/secrets# ls
+initialAdminPassword  jenkins.model.Jenkins.crumbSalt  master.key
+root@devops-master:/var/lib/jenkins/secrets# cat initialAdminPassword 
+d2faeb3bc79e4e7497ab5a6464a06c2f
+root@devops-master:/var/lib/jenkins/secrets# exit

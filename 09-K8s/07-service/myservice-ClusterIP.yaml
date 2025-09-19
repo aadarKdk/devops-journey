@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+ name: mysvc
+
+spec:
+ type: ClusterIP
+ selector:
+   owner: frontend
+ ports:
+   - port: 80
+     targetPort: 80
+

@@ -1,0 +1,194 @@
+vagrant@vagrant:~$ mkdir 07-workspaces
+vagrant@vagrant:~$ ls
+
+vagrant@vagrant:~$ cd 07-workspaces/
+
+vagrant@vagrant:~/07-workspaces$ ls ../03-minimal-module/
+main.tf  providers.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf
+vagrant@vagrant:~/07-workspaces$ cp ../03-minimal-module/* .
+vagrant@vagrant:~/07-workspaces$ ls
+main.tf  providers.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf
+vagrant@vagrant:~/07-workspaces$ rm -rf terraform.tfstate terraform.tfstate.backup 
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace list
+* default
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace show
+default
+vagrant@vagrant:~/07-workspaces$ terraform workspace new dev
+Created and switched to workspace "dev"!
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace show
+dev
+vagrant@vagrant:~/07-workspaces$ terraform workspace list
+  default
+* dev
+
+vagrant@vagrant:~/07-workspaces$ ls
+main.tf  providers.tf terraform.tfstate.d  variables.tf
+vagrant@vagrant:~/07-workspaces$ ls terraform.tfstate.d
+dev
+vagrant@vagrant:~/07-workspaces$ cd terraform.tfstate.d/
+vagrant@vagrant:~/07-workspaces/terraform.tfstate.d$ ls
+dev
+vagrant@vagrant:~/07-workspaces/terraform.tfstate.d$ cd dev/
+vagrant@vagrant:~/07-workspaces/terraform.tfstate.d/dev$ ls
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace new prod
+Created and switched to workspace "prod"!
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace list
+  default
+  dev
+* prod
+
+vagrant@vagrant:~/07-workspaces$ ls terraform.tfstate.d/
+dev  prod
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace new stag
+Created and switched to workspace "stag"!
+You're now on a new, empty workspace. Workspaces isolate their state,
+so if you run "terraform plan" Terraform will not see any existing state
+for this configuration.
+
+vagrant@vagrant:~/07-workspaces$ ls terraform.tfstate.d/
+dev  prod  stag
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace list
+  default
+  dev
+  prod
+* stag
+vagrant@vagrant:~/07-workspaces$ terraform workspace select dev
+Switched to workspace "dev".
+vagrant@vagrant:~/07-workspaces$ terraform workspace list
+  default
+* dev
+  prod
+  stag
+
+vagrant@vagrant:~/07-workspaces$ ls -la
+total 28
+drwxrwxr-x  4 vagrant vagrant 4096 Sep  1 06:52 .
+drwxr-x--- 12 vagrant vagrant 4096 Sep  1 06:44 ..
+-rw-rw-r--  1 vagrant vagrant  350 Sep  1 06:45 main.tf
+-rw-rw-r--  1 vagrant vagrant   43 Sep  1 06:45 providers.tf
+drwxr-xr-x  2 vagrant vagrant 4096 Sep  1 06:46 .terraform
+drwxr-xr-x  5 vagrant vagrant 4096 Sep  1 06:48 terraform.tfstate.d
+-rw-rw-r--  1 vagrant vagrant  818 Sep  1 06:45 variables.tf
+
+vagrant@vagrant:~/07-workspaces$ terraform init
+
+vagrant@vagrant:~/07-workspaces$ ls .terraform
+environment  providers
+vagrant@vagrant:~/07-workspaces$ ls .terraform/environment 
+.terraform/environment
+vagrant@vagrant:~/07-workspaces$ ls .terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/linux_amd64/
+LICENSE.txt  terraform-provider-aws_v6.11.0_x5
+vagrant@vagrant:~/07-workspaces$ ls -l terraform.tfstate.d/
+total 12
+drwxr-xr-x 2 vagrant vagrant 4096 Sep  1 06:46 dev
+drwxr-xr-x 2 vagrant vagrant 4096 Sep  1 06:47 prod
+drwxr-xr-x 2 vagrant vagrant 4096 Sep  1 06:48 stag
+vagrant@vagrant:~/07-workspaces$ ls -l terraform.tfstate.d/dev/
+total 0
+vagrant@vagrant:~/07-workspaces$ terraform validate
+Success! The configuration is valid.
+
+vagrant@vagrant:~/07-workspaces$ terraform fmt
+main.tf
+variables.tf
+
+vagrant@vagrant:~/07-workspaces$ terraform plan
+
+vagrant@vagrant:~/07-workspaces$ terraform apply
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+Outputs:
+instance_id = "i-0d320018b56391504"
+instance_name = "dev"
+vagrant@vagrant:~/07-workspaces$ ls
+dev.tfvars  main.tf  prod.tfvars  providers.tf  stag.tfvars  terraform.tfstate.d  variables.tf
+vagrant@vagrant:~/07-workspaces$ tree
+.
+├── dev.tfvars
+├── main.tf
+├── prod.tfvars
+├── providers.tf
+├── stag.tfvars
+├── terraform.tfstate.d
+│   ├── dev
+│   │   └── terraform.tfstate
+│   ├── prod
+│   └── stag
+└── variables.tf
+5 directories, 7 files
+vagrant@vagrant:~/07-workspaces$ terraform console
+> terraform.workspace
+"dev"
+> exit
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace select stag
+Switched to workspace "stag".
+vagrant@vagrant:~/07-workspaces$ terraform plan
+vagrant@vagrant:~/07-workspaces$ terraform apply
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+Outputs:
+instance_id = "i-0fd995fa87c93a8ab"
+instance_name = "stag"
+vagrant@vagrant:~/07-workspaces$ terraform console
+> terraform.workspace
+"stag"
+> exit
+vagrant@vagrant:~/07-workspaces$ tree
+.
+├── dev.tfvars
+├── main.tf
+├── prod.tfvars
+├── providers.tf
+├── stag.tfvars
+├── terraform.tfstate.d
+│   ├── dev
+│   │   └── terraform.tfstate
+│   ├── prod
+│   └── stag
+│       └── terraform.tfstate
+└── variables.tf
+5 directories, 8 files
+
+vagrant@vagrant:~/07-workspaces$ terraform workspace select prod
+Switched to workspace "prod".
+vagrant@vagrant:~/07-workspaces$ terraform plan
+vagrant@vagrant:~/07-workspaces$ terraform apply
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+Outputs:
+instance_id = "i-04bd97f7291b78b27"
+instance_name = "prod"
+
+vagrant@vagrant:~/07-workspaces$ ls
+dev.tfvars  main.tf  prod.tfvars  providers.tf  stag.tfvars  terraform.tfstate.d  variables.tf
+vagrant@vagrant:~/07-workspaces$ tree
+.
+├── dev.tfvars
+├── main.tf
+├── prod.tfvars
+├── providers.tf
+├── stag.tfvars
+├── terraform.tfstate.d
+│   ├── dev
+│   │   └── terraform.tfstate
+│   ├── prod
+│   │   └── terraform.tfstate
+│   └── stag
+│       └── terraform.tfstate
+└── variables.tf
+
+5 directories, 9 files
+
+
+
+vagrant@vagrant:~$ terraform state --help
+
+
+vagrant@vagrant:~/07-workspaces$ scp -r /home/vagrant/07-workspaces/terraform.tfstate.d/ aadar@192.168.254.144:/home/aadar/devops-journey/11-terraform/07-workspaces/

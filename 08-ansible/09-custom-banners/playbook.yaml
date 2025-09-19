@@ -1,0 +1,25 @@
+---
+- name: Using custom SSH banners on remote host.
+  hosts: all
+  become: yes
+  tasks:
+    - name: Add SSH banner
+      copy:
+        content: "                                            Attention! This {{ ansible_distribution }} system is managed by Ansible. If you are not authorized, do not login."
+        dest: /etc/banner.txt
+
+    - name: Configure sshd_config to use banner
+      become: yes
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?Banner.*'
+        line: 'Banner /etc/banner.txt'
+        state: present
+        backup: yes
+
+    - name: Restart SSH service
+      service:
+        name: "{{ 'ssh' if ansible_os_family == 'Debian' else 'sshd' }}"
+        state: restarted
+
+

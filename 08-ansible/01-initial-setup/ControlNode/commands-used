@@ -1,0 +1,22 @@
+vagrant@control-node:~$ history
+    1  ls
+    2  clear
+    3  python3
+    4  clear
+    5  pip install virtualenv
+    6  sudo apt update
+    7  python3 --version
+    8  sudo apt update
+    9  sudo apt install python3-pip python3-venv -y
+   10  pip3 --version
+   11  python3 -m venv myenv
+   12  ls
+   13  source myenv/bin/activate
+   14  pip install ansible
+   15  ansible --version
+   16  history
+   17  deactivate
+   18  history
+vagrant@control-node:~$ 
+
+

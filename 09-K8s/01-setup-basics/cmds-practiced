@@ -1,0 +1,60 @@
+
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube start
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get nodes
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl config use-context minikube
+aadarkdk@pop-os:~/Desktop/minikube$ minikube update-context
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get nodes
+
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube status
+minikube
+type: Control Plane
+host: Running
+kubelet: Running
+apiserver: Running
+kubeconfig: Configured
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl cluster-info
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get namespaces
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods -n kube-system
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl config view
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority: /home/aadarkdk/.minikube/ca.crt
+    extensions:
+    - extension:
+        last-update: Thu, 24 Jul 2025 13:37:12 +0545
+        provider: minikube.sigs.k8s.io
+        version: v1.36.0
+      name: cluster_info
+    server: https://192.168.49.2:8443
+  name: minikube
+contexts:
+- context:
+    cluster: minikube
+    extensions:
+    - extension:
+        last-update: Thu, 24 Jul 2025 13:37:12 +0545
+        provider: minikube.sigs.k8s.io
+        version: v1.36.0
+      name: context_info
+    namespace: default
+    user: minikube
+  name: minikube
+current-context: minikube
+kind: Config
+preferences: {}
+users:
+- name: minikube
+  user:
+    client-certificate: /home/aadarkdk/.minikube/profiles/minikube/client.crt
+    client-key: /home/aadarkdk/.minikube/profiles/minikube/client.key
+
+

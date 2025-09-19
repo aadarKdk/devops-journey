@@ -1,0 +1,29 @@
+---
+- name: Gather and save essential facts
+  hosts: node1
+  gather_facts: no
+
+  tasks:
+    - name: Gather selected facts
+      setup:
+        gather_subset:
+          - hardware
+          - network
+          - default_ipv4
+          - distribution
+          - processor
+          - kernel
+          - lsb
+      register: host_facts
+
+    - name: Display important facts
+      debug:
+        msg:
+          - "Hostname: {{ host_facts.ansible_facts.ansible_hostname }}"
+          - "IP Address: {{ host_facts.ansible_facts.ansible_eth1.ipv4.address }}"
+          - "OS: {{ host_facts.ansible_facts.ansible_distribution }} {{ host_facts.ansible_facts.ansible_distribution_version }}"
+          - "Kernel: {{ host_facts.ansible_facts.ansible_kernel }}"
+          - "codename: {{ host_facts.ansible_facts.ansible_lsb.codename }}"
+          - "CPU Cores: {{ host_facts.ansible_facts.ansible_processor_cores }}"
+          - "RAM (MB): {{ host_facts.ansible_facts.ansible_memtotal_mb }}"
+

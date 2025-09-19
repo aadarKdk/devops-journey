@@ -1,0 +1,48 @@
+aadarkdk@pop-os:~/Desktop/minikube$ minikube start
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube status
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim nginx-pod.yml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f nginx-pod.yml 
+pod/nginx-pod created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          2m31s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe pod nginx-pod
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl exec -it nginx-pod -- bash
+root@nginx-pod:/# ls  
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@nginx-pod:/# curl localhost
+<!DOCTYPE html>
+<html>
+....
+....
+</html>
+root@nginx-pod:/#exit
+exit
+aadarkdk@pop-os:~/Desktop/minikube$ 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete pod nginx-pod 
+pod "nginx-pod" deleted
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f nginx-pod.yml 
+pod/nginx-pod created
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pod
+NAME        READY   STATUS    RESTARTS   AGE
+nginx-pod   1/1     Running   0          6s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods -o wide
+NAME        READY   STATUS    RESTARTS   AGE   IP            NODE       NOMINATED NODE   READINESS GATES
+nginx-pod   1/1     Running   0          13m   10.244.0.31   minikube   <none>           <none>
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete -f nginx-pod.yml 
+pod "nginx-pod" deleted
+aadarkdk@pop-os:~/Desktop/minikube$  
+
+aadarkdk@pop-os:~/Desktop/minikube$ minikube stop
+
+

@@ -1,0 +1,97 @@
+ control-node: 
+  524  source myenv/bin/activate
+  525  cd ansible-examples/
+  527  cp -r eg3 templates
+  529  cd templates/
+  530  ls
+  531  cat ansible.cfg 
+  532  cat inventory 
+  534  ls /
+  535  ls /vagrant/
+  537  ls /
+  538  ls /vagrant/
+  541  vim playbook.yaml
+  542  vim inventory
+  546  vim ansible.cfg 
+  547  ansible-playbook playbook.yaml 
+  548  vim playbook.yaml 
+  549  ansible-playbook playbook.yaml 
+  551  mkdir template-files
+  552  cd template-files/
+  553  ls
+  554  vim debian_chrony.conf
+  555  vim centos_chrony.conf
+  556  ls
+  557  cd ..
+  558  cd template-files/
+  559  vim debian_chrony.conf 
+  560  vim centos_chrony.conf 
+  561  cd ..
+  562  vim playbook.yaml 
+  563  cd  template-files/
+  564  mv debian_chrony.conf debian_chrony.conf.j2
+  565  ls
+  566  mv centos_chrony.conf centos_chrony.conf.j2
+  567  ls
+  568  cd ..
+  571  vim playbook.yaml 
+  572  ansible-playbook playbook.yaml 
+  574  vim ansible.cfg 
+  576  vim playbook.yaml 
+  577  vim inventory 
+  578  mkdir template-files
+  580  cd template-files/
+  582  vim debian_chrony.conf.j2 
+  583  nano debian_chrony.conf.j2 
+  584  vim debian_chrony.conf.j2 
+  585  vim centos_chrony.conf.j2 
+  586  git add debian_chrony.conf.j2  centos_chrony.conf.j2 
+  589  cd ..
+  591  cd ..
+(myenv) vagrant@control-node:~/ansible-examples$ 
+
+
+
+vagrant@node1:/etc$ history
+    3  sudo systemctl status chronyd
+    4  cd /etc/chrony/
+    5  ls
+    6  pwd
+    7  sudo systemctl status chronyd
+    8  cat chrony.conf 
+    9  cd /etc/mod
+   10  cd /etc/
+vagrant@node1:/etc$ 
+
+
+[vagrant@centos ssh]$ history
+    2  sudo systemctl status chronyd
+    4  cd /etc
+    5  ls
+    6  cat chrony.conf 
+    7  pwd
+    8  cat /etc/chrony.conf 
+    9  cd /etc/motd
+   10  cd /etc/motd.d/
+   11  ls
+   12  cd ..
+   13  ls
+   14  cat /etc/motd
+   15  cd /etc/ssh/
+   16  ls
+   17  cat sshd_config
+   18  sudo cat sshd_config
+[vagrant@centos ssh]$ 
+
+
+vagrant@dbnode:/etc/chrony$ history
+    4  sudo systemctl status chronyd
+    5  cd /etc/chrony/
+    6  ls
+    7  cat chrony.conf 
+    8  pwd
+    9  cat chrony.conf 
+   10  history
+vagrant@dbnode:/etc/chrony$ 
+
+

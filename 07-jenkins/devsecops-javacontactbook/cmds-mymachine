@@ -1,0 +1,18 @@
+mymachine: aadarkdk@pop-os
+
+
+aadarkdk@pop-os:~$ cd Desktop/devsecops-javacontactbook/
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ ls
+Vagrantfile
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ vagrant up
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ vagrant status
+Current machine states:
+
+master                    running (virtualbox)
+host-1                    running (virtualbox)
+host-2                    running (virtualbox)
+
+This environment represents multiple VMs. The VMs are all listed
+above with their current state. For more information about a specific
+VM, run `vagrant status NAME`.
+aadarkdk@pop-os:~/Desktop/devsecops-javacontactbook$ vagrant ssh master

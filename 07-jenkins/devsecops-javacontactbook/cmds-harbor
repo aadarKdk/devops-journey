@@ -1,0 +1,41 @@
+vagrant@vagrant:~$ history
+    4  ping 192.168.56.10
+    5  curl -k https://192.168.56.10
+    6  docker login 192.168.56.10
+    7  sudo nano /etc/hosts
+   10  sudo apt-get update
+   11  sudo apt-get install ca-certificates curl
+   12  sudo install -m 0755 -d /etc/apt/keyrings
+   13  sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+   14  sudo chmod a+r /etc/apt/keyrings/docker.asc
+       echo   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu \
+       $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}") stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+   18  sudo apt-get update
+   19  sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+   20  sudo apt install -y openssl
+   21  sudo mkdir -p /etc/harbor/ssl
+   22  cd /etc/harbor/ssl
+   23  ls
+   24  sudo openssl req -newkey rsa:4096 -nodes -sha256 -keyout harbor.key -x509 -days 365 -out harbor.crt
+   25  ls
+   26  cd
+   27  wget https://github.com/goharbor/harbor/releases/download/v2.13.1/harbor-offline-installer-v2.13.1.tgz
+   28  ls
+   29  tar -zxvf harbor-offline-installer-v2.13.1.tgz
+   30  ls
+   31  rm harbor-offline-installer-v2.13.1.tgz 
+   32  cd harbor/
+   33  ls
+   34  cp harbor.yml.tmpl harbor.yml
+   35  nano harbor.yml
+   36  sudo ./install.sh 
+   37  sudo docker ps
+   38  sudo groupadd docker
+   39  sudo usermod -aG docker vagrant
+   40  docker container ps
+   41  sudo docker container ps
+   42  newgrp docker
+   43  vagrant halt
+   45  cd harbor/
+   46  sudo docker compose up -d
+vagrant@vagrant:~$ 

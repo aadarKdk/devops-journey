@@ -1,0 +1,141 @@
+aadarkdk@pop-os:~/Desktop/minikube$ minikube start
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim nginx-deployment.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f nginx-deployment.yaml
+deployment.apps/nginx-deployment created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3/3     3            3           2m4s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployment
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+nginx-deployment   3/3     3            3           3m5s
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+NAME                                READY   STATUS    RESTARTS   AGE
+nginx-deployment-647677fc66-8vbz5   1/1     Running   0          3m55s
+nginx-deployment-647677fc66-tcb7s   1/1     Running   0          3m55s
+nginx-deployment-647677fc66-z87jv   1/1     Running   0          3m55s
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
+NAME                          DESIRED   CURRENT   READY   AGE
+nginx-deployment-647677fc66   3         3         3       4m6s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe deployment
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe deployment nginx-deployment
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl rollout status deployment/nginx-deployment
+deployment "nginx-deployment" successfully rolled out
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods --show-labels
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl exec --stdin --tty nginx-deployment-647677fc66-8vbz5 -- /bin/bash
+root@nginx-deployment-647677fc66-8vbz5:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
+root@nginx-deployment-647677fc66-8vbz5:/# cat /etc/os-release 
+PRETTY_NAME="Debian GNU/Linux 9 (stretch)"
+NAME="Debian GNU/Linux"
+VERSION_ID="9"
+VERSION="9 (stretch)"
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+root@nginx-deployment-647677fc66-8vbz5:/# nginx
+2025/07/29 05:38:04 [emerg] 15#15: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+2025/07/29 05:38:04 [emerg] 15#15: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+2025/07/29 05:38:04 [emerg] 15#15: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+2025/07/29 05:38:04 [emerg] 15#15: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+2025/07/29 05:38:04 [emerg] 15#15: bind() to 0.0.0.0:80 failed (98: Address already in use)
+nginx: [emerg] bind() to 0.0.0.0:80 failed (98: Address already in use)
+2025/07/29 05:38:04 [emerg] 15#15: still could not bind()
+nginx: [emerg] still could not bind()
+root@nginx-deployment-647677fc66-8vbz5:/# nginx -v
+nginx version: nginx/1.14.2
+oot@nginx-deployment-647677fc66-8vbz5:/# exit
+exit
+aadarkdk@pop-os:~/Desktop/minikube$
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl exec --stdin --tty nginx-deployment-647677fc66-tcb7s -- nginx -v
+nginx version: nginx/1.14.2
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl delete -f nginx-deployment.yaml
+
+--------------------------------------------------------------------------------------------------------------------------
+
+
+aadarkdk@pop-os:~/Desktop/minikube$ vim myapp-deployment.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply --dry-run=client -f myapp-deployment.yaml 
+deployment.apps/myapp-deployment created (dry run)
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl apply -f myapp-deployment.yaml 
+deployment.apps/myapp-deployment created
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get deployments
+NAME               READY   UP-TO-DATE   AVAILABLE   AGE
+myapp-deployment   2/4     4            2           23s
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods -l owner=frontend
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe deployment myapp-deployment
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get pods
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl rollout history deployment myapp-deployment
+deployment.apps/myapp-deployment 
+REVISION  CHANGE-CAUSE
+1         <none>
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl describe -f myapp-deployment.yaml
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl set image deployment/myapp-deployment nginx-app=nginx:1.27.0
+deployment.apps/myapp-deployment image updated
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl rollout status deployment/myapp-deployment
+Waiting for deployment "myapp-deployment" rollout to finish: 2 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 2 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 2 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 2 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 3 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 3 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 3 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 3 out of 4 new replicas have been updated...
+Waiting for deployment "myapp-deployment" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "myapp-deployment" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "myapp-deployment" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "myapp-deployment" rollout to finish: 3 of 4 updated replicas are available...
+deployment "myapp-deployment" successfully rolled out
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl rollout undo deployment/myapp-deployment
+deployment.apps/myapp-deployment rolled back
+aadarkdk@pop-os:~/Desktop/minikube$ 
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl rollout history deployment/myapp-deployment
+deployment.apps/myapp-deployment 
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+
+aadarkdk@pop-os:~/Desktop/minikube$ kubectl get rs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+---
+- name: Templates
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install ntp server on Ubuntu
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+      loop:
+        - chrony
+        - wget
+
+    - name: Install ntp server on CentOS
+      yum:
+        name: "{{ item }}"
+        state: present
+      when: ansible_distribution == "CentOS"
+      loop:
+        - chrony
+        - wget
+
+    - name: Start and Enable chronyd service on Debian and CentOS
+      service:
+        name: chronyd
+        state: started
+        enabled: yes
+
+    - name: Update chrony.conf on Ubuntu
+      template:
+        src: template-files/debian_chrony.conf.j2
+        dest: /etc/chrony/chrony.conf
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Update chrony.conf on CentOS
+      template:
+        src: template-files/centos_chrony.conf.j2
+        dest: /etc/chrony.conf
+      when: ansible_distribution == "CentOS"
+
+    - name: Restart chronyd service
+      service:
+        name: chronyd
+        state: restarted

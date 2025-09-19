@@ -1,0 +1,28 @@
+---
+- name: Conditional and loop in playbooks
+  hosts: all
+  become: yes
+  tasks:
+    - name: Install packages (apache2, wget, chrony, curl) only on Ubuntu
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+      loop:
+        - apache2
+        - wget
+        - chrony
+        - curl
+
+    - name: Install packages (httpd, net-tools, nano) on CentOS
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: ansible_distribution == "CentOS"
+      loop:
+        - httpd
+        - net-tools
+        - nano
+

@@ -1,0 +1,46 @@
+---
+- name: MySQL remote setup with DB and user
+  hosts: dbnode
+  become: yes
+
+    # vars are created here. (In this case imported from hosts_vars/dbnode)
+
+  tasks:
+    - name: Install MySQL server and Python MySQL client library
+      apt:
+        name:
+          - mysql-server
+          - python3-pymysql
+        state: present
+        update_cache: yes           # Refresh package cache before install
+
+    - name: Configure MySQL to accept remote connections
+      lineinfile:
+        path: /etc/mysql/mysql.conf.d/mysqld.cnf
+        regexp: '^bind-address'          # Match the line starting with 'bind-address'
+        line: 'bind-address = 0.0.0.0'   # Replace it with this line (allow all IPs) Listen on all network interfaces
+      notify: Restart MySQL              # Triggers the handler to restart the MySQL service
+
+    - name: Create the specified database
+      mysql_db:
+        name: "{{ db_name }}"
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_passwd }}"
+        login_host: "{{ mysql_host }}"
+
+    - name: Create MySQL user with privileges on the database
+      mysql_user:
+        name: "{{ user_name }}"
+        password: "{{ user_passwd }}"
+        priv: "{{ db_name }}.*:ALL"  # Full privileges on this DB
+        host: "%"                    # Allow access from any host
+        state: present
+        login_user: root
+        login_password: "{{ mysql_root_passwd }}"
+        login_host: "{{ mysql_host }}"
+  handlers:
+    - name: Restart MySQL service
+      service:
+        name: mysql
+        state: restarted

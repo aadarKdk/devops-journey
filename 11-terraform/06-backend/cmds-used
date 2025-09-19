@@ -1,0 +1,37 @@
+vagrant@vagrant:~$ mkdir 06-backend
+
+vagrant@vagrant:~$ cd 06-backend/
+
+vagrant@vagrant:~/06-backend$ cp ../05-outputs/* .
+
+vagrant@vagrant:~/06-backend$ ls
+install-apache2.sh  main.tf  mykey-pair.pem  providers.tf  terraform.tfstate  terraform.tfstate.backup  variables.tf
+
+vagrant@vagrant:~/06-backend$ ls -la
+
+vagrant@vagrant:~/06-backend$ rm -rf terraform.tfstate terraform.tfstate.backup 
+
+vagrant@vagrant:~/06-backend$ vim backend.tf
+
+vagrant@vagrant:~/06-backend$ terraform init
+Initializing the backend...
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+
+vagrant@vagrant:~/06-backend$ terraform apply
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+Outputs:
+My_instance_Lifecycle = ""
+My_instance_Security_group = toset([
+  "demo-sg-aadarsha-khadka",
+])
+My_instance_Subnet_ID = "subnet-029d70ed8f17aa867"
+My_instance_private_IP = "172.31.29.189"
+My_instance_public_IP = "3.80.186.27"
+My_instance_public_URL = "ec2-3-80-186-27.compute-1.amazonaws.com"
+My_instance_state = "running"
+vagrant@vagrant:~/06-backend$ 
+
+vagrant@vagrant:~/06-backend$ terraform destroy --auto-approve
+

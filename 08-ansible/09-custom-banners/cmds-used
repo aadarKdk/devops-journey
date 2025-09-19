@@ -1,0 +1,15 @@
+  595  cp -r templates custom-banners
+  596  cd custom-banners/
+  597  ls
+  598  rm -r template-files/
+  599  ls
+  600  vim playbook.yaml 
+  601  ansible-playbook playbook.yaml 
+  602  vim playbook.yaml 
+  603  ansible-playbook playbook.yaml 
+  604  vim playbook.yaml 
+  605  ansible-playbook playbook.yaml 
+  606  ssh vagrant@192.168.56.13
+  607  ssh vagrant@192.168.56.14
+(myenv) vagrant@control-node:~/ansible-examples/custom-banners$
+

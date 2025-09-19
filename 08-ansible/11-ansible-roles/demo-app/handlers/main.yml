@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# handlers file for demo-app
+
+- name: Restart apache2
+  service:
+    name: apache2
+    state: restarted

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-pod
+  labels:
+    owner: frontend
+    app: nginx-app
+    type: dev
+
+spec:
+ containers:
+   - name: nginx-container
+     image: nginx:latest
+     ports:
+     - containerPort: 80
+

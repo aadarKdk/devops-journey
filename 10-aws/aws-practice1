@@ -1,0 +1,32 @@
+aadarkdk@pop-os:~/Desktop$ ssh -i demo-aadarsha-key-pair.pem ubuntu@54.236.251.184
+The authenticity of host '54.236.251.184 (54.236.251.184)' can't be established.
+ED25519 key fingerprint is SHA256:kwQkBZ7FOcjzVvDKpHOKVm3Fag1th0gAeGg+IPTTAKY.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '54.236.251.184' (ED25519) to the list of known hosts.
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@         WARNING: UNPROTECTED PRIVATE KEY FILE!          @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+Permissions 0644 for 'demo-aadarsha-key-pair.pem' are too open.
+It is required that your private key files are NOT accessible by others.
+This private key will be ignored.
+Load key "demo-aadarsha-key-pair.pem": bad permissions
+ubuntu@54.236.251.184: Permission denied (publickey).
+aadarkdk@pop-os:~/Desktop$ ls -l
+-rw-r--r-- 1 aadarkdk aadarkdk   1678 Aug  7 19:13 demo-aadarsha-key-pair.pem
+
+aadarkdk@pop-os:~/Desktop$ ls -l demo-aadarsha-key-pair.pem 
+-r-------- 1 aadarkdk aadarkdk 1678 Aug  7 19:13 demo-aadarsha-key-pair.pem
+
+aadarkdk@pop-os:~/Desktop$ ssh -i demo-aadarsha-key-pair.pem ubuntu@54.236.251.184
+Welcome to Ubuntu 24.04.2 LTS (GNU/Linux 6.8.0-1029-aws x86_64)
+
+
+ubuntu@ip-172-31-37-175:~$ whoami
+ubuntu
+ubuntu@ip-172-31-37-175:~$ cat /etc/os-release 
+
+
+ubuntu@ip-172-31-37-175:~$ curl ifconfig.me
+54.236.251.184ubuntu@ip-172-31-37-175:~$ 
+

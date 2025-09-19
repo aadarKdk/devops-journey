@@ -1,0 +1,27 @@
+---
+- name: Install packages conditionally by group
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ubuntu group nodes - install packages
+      apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: "'ubuntu_nodes' in group_names"
+      loop:
+        - apache2
+        - wget
+        - chrony
+        - curl
+
+    - name: CentOS group nodes - install packages
+      yum:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      when: "'centos_node' in group_names"
+      loop:
+        - httpd
+        - net-tools
+        - nano

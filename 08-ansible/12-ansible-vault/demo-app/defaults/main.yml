@@ -1,0 +1,8 @@
+#SPDX-License-Identifier: MIT-0
+---
+# defaults file for demo-app
+
+user_list:
+  - user1
+  - user2
+  - user3

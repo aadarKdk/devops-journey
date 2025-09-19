@@ -1,0 +1,139 @@
+vagrant@vagrant:~$ terraform --version
+
+vagrant@vagrant:~$ terraform
+ 
+vagrant@vagrant:~/02-launch-aws-instance$ terraform --help
+Main commands:
+  init          Prepare your working directory for other commands
+  validate      Check whether the configuration is valid
+  plan          Show changes required by the current configuration
+  apply         Create or update infrastructure
+  destroy       Destroy previously-created infrastructure
+
+vagrant@vagrant:~/02-launch-aws-instance$ vim main.tf
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform fmt main.tf 
+main.tf
+
+vagrant@vagrant:~/02-launch-aws-instance$ cat main.tf 
+provider "aws" {
+  region = us-east-1
+}
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls -la
+-rw-rw-r-- 1 vagrant vagrant   40 Aug 29 00:57 main.tf
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform init
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls -la
+-rw-rw-r-- 1 vagrant vagrant   40 Aug 29 00:57 main.tf
+drwxr-xr-x 3 vagrant vagrant 4096 Aug 29 00:58 .terraform
+-rw-r--r-- 1 vagrant vagrant 1377 Aug 29 01:00 .terraform.lock.hcl
+
+vagrant@vagrant:~/02-launch-aws-instance$ cat .terraform.lock.hcl 
+# This file is maintained automatically by "terraform init".
+# Manual edits may be lost in future updates.
+provider "registry.terraform.io/hashicorp/aws" {
+  version = "6.11.0"
+  hashes = [
+  ]
+}
+
+vagrant@vagrant:~/02-launch-aws-instance$ cd .terraform
+vagrant@vagrant:~/02-launch-aws-instance/.terraform$ ls
+providers
+vagrant@vagrant:~/02-launch-aws-instance/.terraform$ cd providers/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers$ ls
+registry.terraform.io
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers$ cd registry.terraform.io/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io$ ls
+hashicorp
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io$ cd hashicorp/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp$ ls
+aws
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp$ cd aws/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws$ ls
+6.11.0
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws$ cd 6.11.0/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0$ ls
+linux_amd64
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0$ cd linux_amd64/
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/linux_amd64$ ls
+LICENSE.txt  terraform-provider-aws_v6.11.0_x5
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/linux_amd64$ cat LICENSE.txt 
+vagrant@vagrant:~/02-launch-aws-instance/.terraform/providers/registry.terraform.io/hashicorp/aws/6.11.0/linux_amd64$ ls
+LICENSE.txt  terraform-provider-aws_v6.11.0_x5
+
+
+vagrant@vagrant:~$ aws s3 ls
+
+vagrant@vagrant:~/02-launch-aws-instance$ vim main.tf 
+vagrant@vagrant:~/02-launch-aws-instance$ terraform fmt
+main.tf
+vagrant@vagrant:~/02-launch-aws-instance$ cat main.tf 
+provider "aws" {
+  region = us-east-1
+}
+
+resource "aws_instance" "demo_server" {
+  ami                    = "ami-0360c520857e3138f"
+  instance_type          = "t2.nano"
+  key_name               = "demo-aadarsha-key-pair"
+  vpc_security_group_ids = ["sg-048bcbb20a70002e1"]
+  tags = {
+    Name      = "demo-vm-aadarsha",
+    CreatedBy = "Terraform"
+  }
+}
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform validate
+Success! The configuration is valid.
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform plan
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform apply
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls -la
+-rw-rw-r-- 1 vagrant vagrant  357 Aug 29 06:53 main.tf
+drwxr-xr-x 3 vagrant vagrant 4096 Aug 29 06:28 .terraform
+-rw-r--r-- 1 vagrant vagrant 1377 Aug 29 06:30 .terraform.lock.hcl
+-rw-rw-r-- 1 vagrant vagrant 5250 Aug 29 06:55 terraform.tfstate
+
+vagrant@vagrant:~/02-launch-aws-instance$ cat terraform.tfstate 
+
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls
+main.tf  terraform.tfstate
+vagrant@vagrant:~/02-launch-aws-instance$ vim main.tf (simply tag changed)
+vagrant@vagrant:~/02-launch-aws-instance$ cat main.tf 
+provider "aws" {
+  region = "us-east-1"
+}
+
+resource "aws_instance" "demo_server" {
+  ami                    = "ami-0360c520857e3138f"
+  instance_type          = "t2.nano"
+  key_name               = "demo-aadarsha-key-pair"
+  vpc_security_group_ids = ["sg-048bcbb20a70002e1"]
+  tags = {
+    Name      = "demo-vm-aadarsha",
+    CreatedBy = "Terraform in Aug"
+  }
+}
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform plan
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform apply
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls
+main.tf  terraform.tfstate  terraform.tfstate.backup
+
+vagrant@vagrant:~/02-launch-aws-instance$ ls -la
+
+vagrant@vagrant:~/02-launch-aws-instance$ terraform destroy
+
+
+
+
+
+

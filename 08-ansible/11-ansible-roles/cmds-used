@@ -1,0 +1,112 @@
+control-node:
+  761  mkdir ansible-roles
+  762  ls
+  763  cp -r handlers/* ansible-roles/
+  764  cd ansible-roles/
+  765  ls
+  766  cat inventory 
+  767  ansible-playbook playbook.yaml 
+  768  ls
+  769  vim index.html
+  770  vim playbook.yaml 
+  771  ansible-playbook playbook.yaml 
+  772  ansible-galaxy role
+  773  ansible-galaxy collection
+  774  ansible-galaxy --version
+  775  ansible-galaxy role --help
+  776  ansible-galaxy role init demo-app
+  777  ls
+  778  cd demo-app/
+  779  ls
+  780  cat README.md 
+  781  tree
+  782  sudo apt-get update
+  783  sudo apt-get install tree
+  784  tree
+  785  tree -la
+  786  cd tasks/
+  787  ls
+  788  vim main.yml 
+  789  cd ..
+  790  ls
+  791  vim playbook.yaml 
+  792  vim demo-app/tasks/main.yml 
+  793  cat playbook.yaml 
+  794  vim demo-app/handlers/main.yml 
+  795  cat inventory 
+  796  vim demo-app/defaults/main.yml 
+  797  vim demo-app/tasks/main.yml 
+  798  ls
+  799  mv template-files/* demo-app/templates/
+  800  ls demo-app/templates/
+  801  ls
+  802  cd template-files/
+  803  ls
+  804  cd ..
+  805  cp demo-app/templates/* template-files/
+  806  ls
+  807  cd template-files/
+  808  ls
+  809  cd ..
+  810  ls demo-app/templates/
+  811  ls
+  812  cd ..
+  814  ls
+  815  cd ansible-roles/
+  816  ls
+  817  cd demo-app/
+  818  ls
+  819  cd ..
+  820  ls
+  821  cd ansible-roles/
+  822  ls
+  823  cp index.html demo-app/files/
+  824  cat demo-app/files/index.html 
+  825  rm -r template-files/
+  826  rm index.html 
+  827  ls
+  828  tree demo-app/
+  829  cat demo-app/tests/inventory 
+  830  cat inventory 
+  831  ls
+  832  vim demo-app/templates/apache2.conf.j2 
+  833  vim inventory 
+  834  vim playbook.yaml 
+  835  vim demo-app/tasks/main.yml 
+  836  vim demo-app/defaults/main.yml 
+  837  vim playbook.yaml 
+  838  ls
+  839  cat inventory 
+  840  vim demo-app/tests/inventory 
+  841  tree demo-app/
+  842  cat demo-app/tests/test.yml 
+  843  vim playbook.yaml 
+  844  ls
+  845  cat ansible.cfg 
+  846  tree
+  847  cat inventory 
+  848  cat playbook.yaml 
+  849  ansible-playbook playbook.yaml 
+  851  scp -r ~/ansible-examples/ansible-roles/* aadar@192.168.254.144:/home/aadar/devops-journey/08-ansible/11-ansible-roles
+  852  history 
+(myenv) vagrant@control-node:~/ansible-examples/ansible-roles$ 
+
+
+node1:
+
+vagrant@node1:~$ cd /opt/
+vagrant@node1:/opt$ ls
+tmpdir  VBoxGuestAdditions-7.1.6
+vagrant@node1:/opt$ cd tmpdir/
+vagrant@node1:/opt/tmpdir$ ls
+index.html
+vagrant@node1:/opt/tmpdir$ cat index.html 
+<h1> We are learning ansible roles </h1>
+
+vagrant@node1:/opt/tmpdir$ ls
+index.html
+vagrant@node1:/opt/tmpdir$ cd /home/
+vagrant@node1:/home$ ls
+user1  user2  user3  vagrant
+vagrant@node1:/home$ sudo systemctl status apache2
+

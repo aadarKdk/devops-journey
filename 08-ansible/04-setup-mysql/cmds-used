@@ -1,0 +1,57 @@
+on control-node:
+  192  cd setup-mysql/
+  194  vim inventory 
+  198  ansible-doc copy
+  199  ansible-doc
+  200  ansible-doc apt
+  202  ansible-config init > ansible.cfg
+  203  ls
+  204  vim ansible.cfg 
+  205  ls ~/
+  206  ls ~/ -al
+  207  ls ~/.ansible
+  208  ls
+  209  vim ansible.cfg 
+  210  rm ansible.cfg 
+  211  ls
+  212  vim ansible.cfg
+  213  vim inventory 
+  214  vim playbook.yaml 
+  215  ansible-playbook playbook.yaml -C
+  222  ansible-playbook playbook.yaml --syntax-check
+  223  ansible-playbook playbook.yaml -C
+  230  ansible-playbook playbook.yaml
+  233  source myenv/bin/activate
+  234  cd ansible-examples/setup-mysql/
+  238  vim playbook.yaml 
+  239  ansible-playbook playbook.yaml -C
+  240  ansible-playbook playbook.yaml
+  268  vim ansible.cfg 
+  269  ansible-playbook playbook.yaml 
+  270  ls
+  271  cat myapp.log
+  279  mkdir host_vars
+  282  cd host_vars/
+  284  vim dbnode
+  285  cd ..
+  289  vim playbook.yaml 
+  290  ansible-playbook playbook.yaml -C
+  291  ansible-playbook playbook.yaml --syntax-check
+  292  ansible-playbook playbook.yaml
+(myenv) vagrant@control-node:~/ansible-examples/setup-mysql$ 
+
+
+on dbnode:
+vagrant@dbnode:~$ history
+    2  ping 192.168.56.11
+    3  systemctl list-units --type=service | grep -i mysql
+    4  python3 --version
+    5  exit
+    7  sudo systemctl status mysql
+vagrant@dbnode:~$ mysql -u root -p
+Enter password: 
+mysql> SHOW DATABASES;
+mysql> SELECT user, host FROM mysql.user WHERE user = 'eguser';
+mysql> exit
+Bye
+vagrant@dbnode:~$

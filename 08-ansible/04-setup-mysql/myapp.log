@@ -1,0 +1,29 @@
+---------------------------------
+| Logs are saved automatically: |
+---------------------------------
+2025-07-10 11:40:05,584 p=6087 u=vagrant n=ansible INFO| PLAY [MySQL remote setup with DB and user] **************************************************************************************************************************************************
+2025-07-10 11:40:05,591 p=6087 u=vagrant n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-07-10 11:40:07,421 p=6087 u=vagrant n=ansible WARNING| [WARNING]: Platform linux on host dbnode is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning
+of that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-10 11:40:07,421 p=6087 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 11:40:07,427 p=6087 u=vagrant n=ansible INFO| TASK [debug] ********************************************************************************************************************************************************************************
+2025-07-10 11:40:07,444 p=6087 u=vagrant n=ansible INFO| ok: [dbnode] => {
+    "db_name": "egdb"
+}
+2025-07-10 11:40:07,468 p=6087 u=vagrant n=ansible INFO| TASK [debug] ********************************************************************************************************************************************************************************
+2025-07-10 11:40:07,487 p=6087 u=vagrant n=ansible INFO| ok: [dbnode] => {
+    "msg": "Value of db_name is egdb"
+}
+2025-07-10 11:40:07,495 p=6087 u=vagrant n=ansible INFO| TASK [Install MySQL server and Python MySQL client library] *********************************************************************************************************************************
+2025-07-10 11:40:10,485 p=6087 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 11:40:10,493 p=6087 u=vagrant n=ansible INFO| TASK [Configure MySQL to accept remote connections] *****************************************************************************************************************************************
+2025-07-10 11:40:10,906 p=6087 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 11:40:10,912 p=6087 u=vagrant n=ansible INFO| TASK [Create the specified database] ********************************************************************************************************************************************************
+2025-07-10 11:40:11,391 p=6087 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 11:40:11,398 p=6087 u=vagrant n=ansible INFO| TASK [Create MySQL user with privileges on the database] ************************************************************************************************************************************
+2025-07-10 11:40:11,910 p=6087 u=vagrant n=ansible WARNING| [WARNING]: Option column_case_sensitive is not provided. The default is now false, so the column's name will be uppercased. The default will be changed to true in community.mysql 4.0.0.
+
+2025-07-10 11:40:11,910 p=6087 u=vagrant n=ansible INFO| ok: [dbnode]
+2025-07-10 11:40:11,911 p=6087 u=vagrant n=ansible INFO| PLAY RECAP **********************************************************************************************************************************************************************************
+2025-07-10 11:40:11,911 p=6087 u=vagrant n=ansible INFO| dbnode                     : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0                                                             
