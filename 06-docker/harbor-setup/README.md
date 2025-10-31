@@ -7,7 +7,8 @@ This guide walks you through installing **Harbor** (v2.13.1) in **offline mode**
 ### I followed the following steps:
 1. Created fresh VM using Vagrant with [Vagrantfile](https://github.com/erkdk/devops-journey/blob/main/06-docker/harbor-setup/Vagrantfile).
 2. [Installed Docker Engine.](https://docs.docker.com/engine/install/ubuntu/)
-3. Installed OpenSSL and created SSL certificates.
+3. [Manage Docker as a non-root user](https://docs.docker.com/engine/install/linux-postinstall)
+4. Installed OpenSSL and created SSL certificates.
 ```bash
 sudo apt install -y openssl
 
